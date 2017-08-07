@@ -14,7 +14,7 @@ if (args.length != 2) {
 renderModuleFactory(
   AppServerModuleNgFactory,
   {
-    document: (args[0] === 'static') ? fs.readFileSync('./src/index.html', 'utf-8') : fs.readFileSync('./dist/client/index.html', 'utf-8'),
+    document: (args[0] === 'static') ? fs.readFileSync('./src/index.html', 'utf-8') : fs.readFileSync('./dist/browser/index.html', 'utf-8'),
     url: args[1]
   }
 ).then(document => process.stdout.write(document));
