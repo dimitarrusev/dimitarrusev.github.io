@@ -6,8 +6,9 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes = [
-  { path: '', component: BlogComponent },
+  { path: '', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
+  { path: 'blog', component: BlogComponent },
   { path: 'contact', component: ContactComponent }
 ];
 
