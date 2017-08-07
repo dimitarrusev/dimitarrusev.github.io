@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BlogComponent } from './blog/blog.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ContactComponent } from './contact/contact.component';
     AppComponent,
     BlogComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    PageNotFoundComponent
   ],
   bootstrap: [AppComponent]
 })
