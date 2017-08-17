@@ -7,7 +7,7 @@
     {
       "name": "browser",
       "root": "src",
-      "outDir": "dist/browser",
+      "outDir": "build/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -33,7 +33,7 @@
       "name": "server",
       "platform": "server",
       "root": "src",
-      "outDir": "dist/server",
+      "outDir": "build/server",
       "assets": [
         "assets",
         "favicon.ico"

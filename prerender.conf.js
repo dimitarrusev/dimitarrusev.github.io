@@ -5,8 +5,8 @@ module.exports = {
     'blog',
     'contact'
   ],
-  permalinkType: '',
+  permalinkType: 'pretty',
   documentType: 'dynamic',
-  documentPath: 'dist/browser/index.html',
-  outputPath: 'dist/dynamic'
+  documentPath: 'build/browser/index.html',
+  outputPath: 'dist'
 };

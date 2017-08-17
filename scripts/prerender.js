@@ -3,7 +3,7 @@ require('reflect-metadata');
 const fs = require('fs');
 const path = require('path');
 const { renderModuleFactory } = require('@angular/platform-server');
-const { AppServerModuleNgFactory } = require('../dist/server/main.bundle.js');
+const { AppServerModuleNgFactory } = require('../build/server/main.bundle.js');
 let { routes, permalinkType, documentPath, outputPath } = require('../prerender.conf.js');
 
 documentPath = path.resolve(__dirname, '../', documentPath);
