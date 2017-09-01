@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from './shared';
 
 @Component({
   selector: 'dr-blog',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-
-  constructor() { }
+  constructor(private blogService: BlogService) {}
 
   ngOnInit() {
+    this.blogService.getPosts();
   }
-
 }

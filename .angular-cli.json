@@ -10,6 +10,7 @@
       "outDir": "build/browser",
       "assets": [
         "assets",
+        "content/**/*.json",
         "favicon.ico"
       ],
       "index": "index.html",

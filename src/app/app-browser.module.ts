@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BlogModule } from './blog/blog.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { BlogComponent } from './blog/blog.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AboutComponent } from './about';
+import { ContactComponent } from './contact';
+import { NotFoundComponent } from './not-found';
 
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'dimitarrusev.github.io' }),
+    BlogModule,
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    BlogComponent,
     AboutComponent,
     ContactComponent,
-    PageNotFoundComponent
+    NotFoundComponent
   ],
   bootstrap: [AppComponent]
 })

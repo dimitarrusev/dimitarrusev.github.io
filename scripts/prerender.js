@@ -1,36 +1,44 @@
+/**
+ * prerender.js
+ *
+ * Prerenders and spits out static or dynamic page for each route.
+ */
+
 require('zone.js/dist/zone-node');
 require('reflect-metadata');
 const fs = require('fs');
 const path = require('path');
+const shell = require('shelljs');
+const config = require('../build.conf.js');
 const { renderModuleFactory } = require('@angular/platform-server');
 const { AppServerModuleNgFactory } = require('../build/server/main.bundle.js');
-let { routes, permalinkType, documentPath, outputPath } = require('../prerender.conf.js');
 
-documentPath = path.resolve(__dirname, '../', documentPath);
-outputPath = path.resolve(__dirname, '../', outputPath);
+const routes = config.prerender.routes;
+const document = fs.readFileSync(path.resolve(__dirname, '../', config.prerender.document), 'utf-8');
+const permalink = config.prerender.permalink;
+const outDir = path.resolve(__dirname, '../', config.prerender.outDir);
 
-const document = fs.readFileSync(documentPath, 'utf-8');
+routes.forEach(route => {
+  let url = route;
+  let extraProviders = [{
+    provide: 'serverUrl',
+    useValue: 'http://localhost:4200/'
+  }];
 
-routes.forEach(url => {
   renderModuleFactory(
     AppServerModuleNgFactory,
     {
       document,
-      url
+      url,
+      extraProviders
     }
   ).then(document => {
-    if (!fs.existsSync(outputPath)) fs.mkdirSync(outputPath);
-
-    // create directory structure and write files to disk
-    // in accordance with the permalink type settings
-    (permalinkType === 'pretty')
+    (permalink === 'pretty')
       ? (url === '/')
-          ? fs.writeFileSync(`${outputPath}/index.html`, document)
-          : (fs.existsSync(`${outputPath}/${url}`))
-              ? fs.writeFileSync(`${outputPath}/${url}/index.html`, document)
-              : fs.mkdir(`${outputPath}/${url}`, () => fs.writeFileSync(`${outputPath}/${url}/index.html`, document))
+          ? fs.writeFileSync(`${outDir}/index.html`, document)
+          : fs.writeFileSync(`${outDir}/${url}/index.html`, document)
       : (url === '/')
-          ? fs.writeFileSync(`${outputPath}/index.html`, document)
-          : fs.writeFileSync(`${outputPath}/${url}.html`, document);
+          ? fs.writeFileSync(`${outDir}/index.html`, document)
+          : fs.writeFileSync(`${outDir}/${url}.html`, document);
   });
 });

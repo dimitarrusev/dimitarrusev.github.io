@@ -1,21 +1,36 @@
+/**
+ * copy.js
+ *
+ * Copies assets and content into distribution directory.
+ */
+
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
-let { documentType, outputPath } = require('../prerender.conf.js');
+const config = require('../build.conf.js');
 
-outputPath = path.resolve(__dirname, '../', outputPath);
+const browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppOutDir),
+      serverAppOutDir = path.resolve(__dirname, '../', config.build.serverAppOutDir),
+      prerenderType = config.prerender.type,
+      prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir),
+      processOutDir = `${config.process.dir.split('/').filter(piece => piece !== 'src')[0]}`;
 
-let staticAssets = [
-  path.resolve(__dirname, '../', 'build/browser/favicon.ico'),
-  path.resolve(__dirname, '../', 'build/server/styles.*')
+const content = `${browserAppOutDir}/${processOutDir}`;
+
+const staticAssets = [
+  `${browserAppOutDir}/favicon.ico`,
+  `${serverAppOutDir}/styles.*`
 ];
 
 const dynamicAssets = [
-  path.resolve(__dirname, '../', 'build/browser/favicon.ico'),
-  path.resolve(__dirname, '../', 'build/browser/main.*'),
-  path.resolve(__dirname, '../', 'build/browser/polyfills.*'),
-  path.resolve(__dirname, '../', 'build/browser/styles.*'),
-  path.resolve(__dirname, '../', 'build/browser/vendor.*')
+  `${browserAppOutDir}/favicon.ico`,
+  `${browserAppOutDir}/styles.*`,
+  `${browserAppOutDir}/inline.*`,
+  `${browserAppOutDir}/polyfills.*`,
+  `${browserAppOutDir}/vendor.*`,
+  `${browserAppOutDir}/main.*`
 ];
 
-shell.cp('-R', (documentType === 'static') ? staticAssets : dynamicAssets, outputPath);
+const assetsAndContent = (prerenderType === 'static') ? [...staticAssets, content] : [...dynamicAssets, content];
+
+shell.cp('-R', assetsAndContent, prerenderOutDir);
