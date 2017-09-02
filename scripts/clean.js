@@ -14,5 +14,8 @@ let browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppOut
     processOutDir = path.resolve(__dirname, '../', config.process.dir),
     prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir);
 
-shell.rm('-rf', `${processOutDir}/**/*.json`, browserAppOutDir, serverAppOutDir, prerenderOutDir);
-
+if (process.argv[2] === 'process') {
+  shell.rm('-rf', `${processOutDir}/**/*.json`);
+} else {
+  shell.rm('-rf', browserAppOutDir, serverAppOutDir, prerenderOutDir);
+}

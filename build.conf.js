@@ -48,6 +48,7 @@ module.exports = {
       'blog',
       'blog/2017/08/first-post',
       'blog/2017/08/second-post',
+      'blog/2017/09/third-post',
       'contact'
     ],
     type: 'dynamic',

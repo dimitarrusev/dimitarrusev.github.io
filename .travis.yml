@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "8.2.1"
+
+breanches:
+  only:
+    - source
+
+before_script:
+  - npm run start
+
+script:
+  - npm run build
+
+after_success:
+  - npm run deploy
+
+notifications:
+  - email:
+    on_failure: change
+    on_success: change

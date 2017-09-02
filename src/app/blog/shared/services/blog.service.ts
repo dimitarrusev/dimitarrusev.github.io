@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 import { Post } from '../../../core';
 
 @Injectable()
@@ -11,11 +12,11 @@ export class BlogService {
   constructor(private httpClient: HttpClient) {}
 
   getPosts() {
-    return this.httpClient.get<Array<Post>>('content/posts/posts.json')
+    return this.httpClient.get<Array<Post>>(`${environment.postsUrlBase}/posts.json`)
                           .subscribe(result => this.posts.next(result));
   }
 
   getPost(year, month, title): Observable<Post> {
-    return this.httpClient.get(`content/posts/${year}-${month}-${title}.json`);
+    return this.httpClient.get(`${environment.postsUrlBase}/${year}-${month}-${title}.json`);
   }
 }
