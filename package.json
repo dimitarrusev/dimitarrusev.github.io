@@ -9,7 +9,7 @@
     "build": "npm run build:browser && npm run build:server && npm run generate && npm run prerender && npm run copy",
     "build:browser": "ng build --app browser --prod",
     "build:server": "ng build --aot --app server --prod --output-hashing=none",
-    "deploy": "ngh --branch master --message \"auto-generated message\"",
+    "deploy": "ngh --repo https://GH_TOKEN@github.com/dimitarrusev/dimitarrusev.github.io.git --branch master --message \"auto-generated message\"",
     "clean": "node scripts/clean.js",
     "preprocess": "node scripts/clean.js process",
     "process": "node scripts/process.js",
