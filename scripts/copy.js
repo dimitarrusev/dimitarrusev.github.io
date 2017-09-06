@@ -18,11 +18,13 @@ const browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppO
 const content = `${browserAppOutDir}/${processOutDir}`;
 
 const staticAssets = [
+  `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
   `${serverAppOutDir}/styles.*`
 ];
 
 const dynamicAssets = [
+  `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
   `${browserAppOutDir}/styles.*`,
   `${browserAppOutDir}/inline.*`,

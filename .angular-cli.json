@@ -11,7 +11,8 @@
       "assets": [
         "assets",
         "content/**/*.json",
-        "favicon.ico"
+        "favicon.ico",
+        "CNAME"
       ],
       "deployUrl": "https://dimitarrusev.github.io",
       "index": "index.html",
