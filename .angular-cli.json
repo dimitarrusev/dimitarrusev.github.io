@@ -14,7 +14,7 @@
         "favicon.ico",
         "CNAME"
       ],
-      "deployUrl": "https://dimitarrusev.github.io",
+      "deployUrl": "https://dimitarrusev.com",
       "index": "index.html",
       "main": "main-browser.ts",
       "polyfills": "polyfills.ts",
@@ -41,7 +41,7 @@
         "assets",
         "favicon.ico"
       ],
-      "deployUrl": "https://github.com/dimitarrusev/dimitarrusev.github.io",
+      "deployUrl": "https://dimitarrusev.com",
       "index": "index.html",
       "main": "main-server.ts",
       "test": "test.ts",
