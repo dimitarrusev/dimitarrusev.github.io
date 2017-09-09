@@ -2,7 +2,7 @@
   <li *ngFor="let post of posts">
     <a [routerLink]="[post.year, post.month, post.slug]">{{ post.title }}</a>
     <p>{{ post.category }}</p>
-    <p>{{ post.monthname.slice(0, 3) }} {{ post.day }}, {{ post.year }}</p>
+    <p>{{ post.monthName.slice(0, 3) }} {{ post.day }}, {{ post.year }}</p>
     <p>{{ post.excerpt }}</p>
   </li>
 </ul>

@@ -7,10 +7,12 @@ module.exports = {
    *
    * Dupcliate properties for ease of use.
    *
+   * outDir: root output directory
    * browserAppOutDir: output directory for browser app build results
    * serverAppOutDir: output directory for server app build results
    */
   build: {
+    outDir: angularCliConfig.apps.filter(app => app.name === 'browser')[0].outDir.split('/')[0],
     browserAppOutDir: angularCliConfig.apps.filter(app => app.name === 'browser')[0].outDir,
     serverAppOutDir: angularCliConfig.apps.filter(app => app.name === 'server')[0].outDir
   },

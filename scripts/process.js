@@ -34,8 +34,8 @@ function processMarkdownEntries(markdownEntries) {
     processedMarkdownEntry.day = date[2];
 
     // add monthname and dayname props
-    processedMarkdownEntry.monthname = getMonthName(processedMarkdownEntry.date);
-    processedMarkdownEntry.dayname = getDayName(processedMarkdownEntry.date);
+    processedMarkdownEntry.monthName = getMonthName(processedMarkdownEntry.date);
+    processedMarkdownEntry.dayName = getDayName(processedMarkdownEntry.date);
 
     // add excerpt prop
     processedMarkdownEntry.excerpt = processedMarkdownEntry.content.slice(1, config.process.excerptLength);

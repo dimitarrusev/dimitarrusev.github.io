@@ -4,6 +4,8 @@ export class Post {
   year: string;
   month: string;
   day: string;
+  monthName: string;
+  dayName: string;
   category: string;
   tags: Array<string>;
   slug: string;
