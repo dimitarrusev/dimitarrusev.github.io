@@ -21,11 +21,13 @@ module.exports = {
    * Processes markdown files to json.
    *
    * dir: directory containing markdown files
+   * excerptLength: excerpt character length
    * outFilenameFormat: filename format for processed entries (supported formats: year-month-day-slug, year-month-slug, year-slug, slug)
    * outSummaryFilename: filename for the summary file (filename or false)
    */
   process: {
     dir: 'src/content/posts',
+    excerptLength: 100,
     outFilenameFormat: 'year-month-slug',
     outSummaryFilename: 'posts.json'
   },

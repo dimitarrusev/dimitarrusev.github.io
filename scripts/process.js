@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const yaml = require('yaml-front-matter');
+const marked = require('marked');
 const config = require('../build.conf');
 
 function getMarkdownEntries(dir) {
@@ -25,6 +26,12 @@ function processMarkdownEntries(markdownEntries) {
   markdownEntries.forEach(markdownEntry => {
     let contentPropertyName = 'content';
     let processedMarkdownEntry = yaml.loadFront(markdownEntry, contentPropertyName);
+
+    // add excerpt
+    processedMarkdownEntry.excerpt = processedMarkdownEntry.content.slice(1, config.process.excerptLength);
+
+    // convert markdown to html
+    processedMarkdownEntry[contentPropertyName] = marked(processedMarkdownEntry[contentPropertyName]);
 
     processedMarkdownEntries.push(processedMarkdownEntry);
   });
@@ -59,8 +66,11 @@ function generateFilename(format, date, slug) {
 };
 
 function writeIndividualFiles(files) {
-  files.forEach(file => {
+  files.forEach(entry => {
+    let file = Object.assign({}, entry);
     let filename = generateFilename(config.process.outFilenameFormat, file.date, file.slug);
+
+    delete file['excerpt'];
 
     fs.writeFileSync(`${config.process.dir}/${filename}`, JSON.stringify(file));
   });
@@ -68,7 +78,13 @@ function writeIndividualFiles(files) {
 
 function writeSummaryFile(files) {
   let summaryFilename = config.process.outSummaryFilename;
-  let summary = files.filter(file => delete file['content']);
+  let summary = files.map(entry => {
+    let file = Object.assign({}, entry);
+
+    delete file['content'];
+
+    return file;
+  });
 
   fs.writeFileSync(`${config.process.dir}/${summaryFilename}`, JSON.stringify(summary));
 }
