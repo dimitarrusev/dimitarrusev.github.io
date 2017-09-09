@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { BlogService } from '../shared';
+import { Subscription } from 'rxjs';
 import { Post } from '../../core';
+import { BlogService } from '../shared';
 
 @Component({
   selector: 'dr-post-detail',

@@ -16,16 +16,7 @@ export class PostsListComponent implements OnInit {
   constructor(private blogService: BlogService) {}
 
   ngOnInit() {
-    this.postsSubscription = this.blogService.posts$.subscribe(posts => {
-      this.posts = posts;
-
-      this.posts.forEach(post => {
-        let date = post.date.split('-');
-        post.year = date[0];
-        post.month = date[1];
-        post.day = date[2];
-      });
-    });
+    this.postsSubscription = this.blogService.posts$.subscribe(posts => this.posts = posts);
   }
 
   ngOnDestroy() {

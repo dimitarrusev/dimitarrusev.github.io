@@ -26,8 +26,18 @@ function processMarkdownEntries(markdownEntries) {
   markdownEntries.forEach(markdownEntry => {
     let contentPropertyName = 'content';
     let processedMarkdownEntry = yaml.loadFront(markdownEntry, contentPropertyName);
+    let date = processedMarkdownEntry.date.split('-');
 
-    // add excerpt
+    // add year, month and day props
+    processedMarkdownEntry.year = date[0];
+    processedMarkdownEntry.month = date[1];
+    processedMarkdownEntry.day = date[2];
+
+    // add monthname and dayname props
+    processedMarkdownEntry.monthname = getMonthName(processedMarkdownEntry.date);
+    processedMarkdownEntry.dayname = getDayName(processedMarkdownEntry.date);
+
+    // add excerpt prop
     processedMarkdownEntry.excerpt = processedMarkdownEntry.content.slice(1, config.process.excerptLength);
 
     // convert markdown to html
@@ -87,6 +97,39 @@ function writeSummaryFile(files) {
   });
 
   fs.writeFileSync(`${config.process.dir}/${summaryFilename}`, JSON.stringify(summary));
+}
+
+function getDayName(date) {
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ];
+
+    return days[new Date(date).getDay()];
+}
+
+function getMonthName(date) {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
+  return months[new Date(date).getMonth()];
 }
 
 const markdownEntries = getMarkdownEntries(config.process.dir);
