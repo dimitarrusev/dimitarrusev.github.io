@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Post } from '../../core';
+
+import { SeoService, Post } from '../../core';
 import { BlogService } from '../shared';
 
 @Component({
@@ -16,13 +17,18 @@ export class PostDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private seoService: SeoService,
     private blogService: BlogService
   ) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.postSubscription = this.blogService.getPost(params.year, params.month, params.slug)
-                                              .subscribe(post => this.post = post);
+      .subscribe(post => {
+        this.post = post;
+        this.seoService.setTitle(post.title)
+                       .setDescription(post.excerpt);
+      });
     })
   }
 

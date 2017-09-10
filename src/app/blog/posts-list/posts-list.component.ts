@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Post } from '../../core';
+
+import { SeoService, Post } from '../../core';
 import { BlogService } from '../shared';
 
 
@@ -13,9 +14,14 @@ export class PostsListComponent implements OnInit {
   postsSubscription: Subscription;
   posts: Array<Post>;
 
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private seoService: SeoService,
+    private blogService: BlogService
+  ) {}
 
   ngOnInit() {
+    this.seoService.setTitle('Front-end Engineering Blog')
+                   .setDescription('Personal insight and opinions on front-end engineering.');
     this.postsSubscription = this.blogService.posts$.subscribe(posts => this.posts = posts);
   }
 
