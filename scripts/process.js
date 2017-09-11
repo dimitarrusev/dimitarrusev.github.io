@@ -76,11 +76,8 @@ function generateFilename(format, date, slug) {
 };
 
 function writeIndividualFiles(files) {
-  files.forEach(entry => {
-    let file = Object.assign({}, entry);
+  files.forEach(file => {
     let filename = generateFilename(config.process.outFilenameFormat, file.date, file.slug);
-
-    delete file['excerpt'];
 
     fs.writeFileSync(`${config.process.dir}/${filename}`, JSON.stringify(file));
   });

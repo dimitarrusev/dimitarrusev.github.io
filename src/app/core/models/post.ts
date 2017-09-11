@@ -9,6 +9,6 @@ export class Post {
   category: string;
   tags: Array<string>;
   slug: string;
-  excerpt?: string;
+  excerpt: string;
   content?: string;
 };
