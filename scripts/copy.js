@@ -13,9 +13,11 @@ const browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppO
       serverAppOutDir = path.resolve(__dirname, '../', config.build.serverAppOutDir),
       prerenderType = config.prerender.type,
       prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir),
-      processOutDir = `${config.process.dir.split('/').filter(piece => piece !== 'src')[0]}`;
+      processPagesOutDir = `${config.process.pages.dir.split('/').filter(piece => piece !== 'src')[0]}`,
+      processPostsOutDir = `${config.process.posts.dir.split('/').filter(piece => piece !== 'src')[0]}`;
 
-const content = `${browserAppOutDir}/${processOutDir}`;
+const pages = `${browserAppOutDir}/${processPagesOutDir}`;
+const posts = `${browserAppOutDir}/${processPostsOutDir}`;
 
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
@@ -33,6 +35,6 @@ const dynamicAssets = [
   `${browserAppOutDir}/main.*`
 ];
 
-const assetsAndContent = (prerenderType === 'static') ? [...staticAssets, content] : [...dynamicAssets, content];
+const assetsAndContent = (prerenderType === 'static') ? [...staticAssets, pages, posts] : [...dynamicAssets, pages, posts];
 
 shell.cp('-R', assetsAndContent, prerenderOutDir);

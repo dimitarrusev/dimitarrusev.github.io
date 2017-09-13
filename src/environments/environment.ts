@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
+  pagesUrlBase: 'content/pages',
   postsUrlBase: 'content/posts'
 };

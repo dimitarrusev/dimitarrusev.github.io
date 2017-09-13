@@ -11,9 +11,11 @@ const config = require('../build.conf.js');
 
 
 if (process.argv[2] === 'processOutput') {
-  let processOutDir = path.resolve(__dirname, '../', config.process.dir);
+  let pagesDir = path.resolve(__dirname, '../', config.process.pages.dir);
+  let postsDir = path.resolve(__dirname, '../', config.process.posts.dir);
 
-  shell.rm('-rf', `${processOutDir}/**/*.json`);
+  shell.rm('-rf', `${pagesDir}/**/*.json`);
+  shell.rm('-rf', `${postsDir}/**/*.json`);
 } else {
   let buildDir = path.resolve(__dirname, '../', config.build.outDir),
       prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir);

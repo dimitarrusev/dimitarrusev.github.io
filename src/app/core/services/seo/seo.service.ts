@@ -11,7 +11,7 @@ export class SeoService {
   ) {}
 
   setTitle(title: string): SeoService {
-    this.title.setTitle(`${ title } - ${ this.siteTitle }`);
+    this.title.setTitle(`${ title } · ${ this.siteTitle }`);
 
     return this;
   }

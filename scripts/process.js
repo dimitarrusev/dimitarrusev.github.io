@@ -20,33 +20,53 @@ function getMarkdownEntries(dir) {
   return markdownEntries;
 };
 
-function processMarkdownEntries(markdownEntries) {
-  let processedMarkdownEntries = [];
+function processPageEntries(pageEntries) {
+  let processedPageEntries = [];
 
-  markdownEntries.forEach(markdownEntry => {
-    let contentPropertyName = 'content';
-    let processedMarkdownEntry = yaml.loadFront(markdownEntry, contentPropertyName);
-    let date = processedMarkdownEntry.date.split('-');
+  pageEntries.forEach(pageEntry => {
+    let contentPropertyName = config.process.pages.contentPropertyName;
+    let processedPageEntry = yaml.loadFront(pageEntry, contentPropertyName);
 
-    // add year, month and day props
-    processedMarkdownEntry.year = date[0];
-    processedMarkdownEntry.month = date[1];
-    processedMarkdownEntry.day = date[2];
-
-    // add monthname and dayname props
-    processedMarkdownEntry.monthName = getMonthName(processedMarkdownEntry.date);
-    processedMarkdownEntry.dayName = getDayName(processedMarkdownEntry.date);
-
-    // add excerpt prop
-    processedMarkdownEntry.excerpt = processedMarkdownEntry.content.slice(1, config.process.excerptLength);
+    // add filename prop
+    processedPageEntry.filename = pageEntry.replace(`${config.process.pages.dir}/`, '').split('.')[0] + '.json';
 
     // convert markdown to html
-    processedMarkdownEntry[contentPropertyName] = marked(processedMarkdownEntry[contentPropertyName]);
+    processedPageEntry[contentPropertyName] = marked(processedPageEntry[contentPropertyName]);
 
-    processedMarkdownEntries.push(processedMarkdownEntry);
+    processedPageEntries.push(processedPageEntry);
   });
 
-  return processedMarkdownEntries;
+  return processedPageEntries;
+};
+
+function processPostEntries(postEntries) {
+  let processedPostEntries = [];
+
+  postEntries.forEach(postEntry => {
+    let contentPropertyName = config.process.posts.contentPropertyName;
+    let processedPostEntry = yaml.loadFront(postEntry, contentPropertyName);
+
+    let date = processedPostEntry.date.split('-');
+
+    // add year, month and day props
+    processedPostEntry.year = date[0];
+    processedPostEntry.month = date[1];
+    processedPostEntry.day = date[2];
+
+    // add monthname and dayname props
+    processedPostEntry.monthName = getMonthName(processedPostEntry.date);
+    processedPostEntry.dayName = getDayName(processedPostEntry.date);
+
+    // add excerpt prop
+    processedPostEntry.excerpt = processedPostEntry.content.slice(0, config.process.posts.excerptLength);
+
+    // convert markdown to html
+    processedPostEntry[contentPropertyName] = marked(processedPostEntry[contentPropertyName]);
+
+    processedPostEntries.push(processedPostEntry);
+  });
+
+  return processedPostEntries;
 };
 
 function generateFilename(format, date, slug) {
@@ -75,16 +95,24 @@ function generateFilename(format, date, slug) {
   return filename;
 };
 
-function writeIndividualFiles(files) {
+function writeIndividualPageFiles(files) {
   files.forEach(file => {
-    let filename = generateFilename(config.process.outFilenameFormat, file.date, file.slug);
+    let filename = file.filename;
 
-    fs.writeFileSync(`${config.process.dir}/${filename}`, JSON.stringify(file));
+    fs.writeFileSync(`${config.process.pages.dir}/${filename}`, JSON.stringify(file));
+  });
+}
+
+function writeIndividualPostFiles(files) {
+  files.forEach(file => {
+    let filename = generateFilename(config.process.posts.outFilenameFormat, file.date, file.slug);
+
+    fs.writeFileSync(`${config.process.posts.dir}/${filename}`, JSON.stringify(file));
   });
 };
 
 function writeSummaryFile(files) {
-  let summaryFilename = config.process.outSummaryFilename;
+  let summaryFilename = config.process.posts.outSummaryFilename;
   let summary = files.map(entry => {
     let file = Object.assign({}, entry);
 
@@ -93,7 +121,7 @@ function writeSummaryFile(files) {
     return file;
   });
 
-  fs.writeFileSync(`${config.process.dir}/${summaryFilename}`, JSON.stringify(summary));
+  fs.writeFileSync(`${config.process.posts.dir}/${summaryFilename}`, JSON.stringify(summary));
 }
 
 function getDayName(date) {
@@ -129,9 +157,18 @@ function getMonthName(date) {
   return months[new Date(date).getMonth()];
 }
 
-const markdownEntries = getMarkdownEntries(config.process.dir);
-const processedMarkdownEntries = processMarkdownEntries(markdownEntries);
+if (process.argv[2] === 'pages') {
+  const markdownEntries = getMarkdownEntries(config.process.pages.dir);
+  const processedPageEntries = processPageEntries(markdownEntries);
 
-writeIndividualFiles(processedMarkdownEntries);
+  writeIndividualPageFiles(processedPageEntries);
+}
 
-if (config.process.outSummaryFilename) writeSummaryFile(processedMarkdownEntries);
+if (process.argv[2] === 'posts') {
+  const markdownEntries = getMarkdownEntries(config.process.posts.dir);
+  const processedPostEntries = processPostEntries(markdownEntries);
+
+  writeIndividualPostFiles(processedPostEntries);
+
+  if (config.process.posts.outSummaryFilename) writeSummaryFile(processedPostEntries);
+}

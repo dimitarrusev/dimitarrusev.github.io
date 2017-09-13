@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BlogComponent, PostsListComponent, PostDetailComponent } from './';
+import { BlogComponent } from './blog.component';
+import { BlogListComponent } from './blog-list';
+import { BlogEntryComponent } from './blog-entry';
+
 
 const routes = [
   {
@@ -10,11 +13,11 @@ const routes = [
     children: [
       {
         path: '',
-        component: PostsListComponent
+        component: BlogListComponent
       },
       {
         path: ':year/:month/:slug',
-        component: PostDetailComponent
+        component: BlogEntryComponent
       }
     ]
   }

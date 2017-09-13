@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { SeoService, Post } from '../../core';
-import { BlogService } from '../shared';
+import { SeoService, PostService, Post } from '../../core';
 
 @Component({
-  selector: 'dr-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.scss']
+  selector: 'dr-blog-entry',
+  templateUrl: './blog-entry.component.html',
+  styleUrls: ['./blog-entry.component.scss']
 })
-export class PostDetailComponent implements OnInit {
+export class BlogEntryComponent implements OnInit {
   paramsSubscription: Subscription;
   postSubscription: Subscription;
   post: Post;
@@ -18,12 +17,12 @@ export class PostDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private seoService: SeoService,
-    private blogService: BlogService
+    private postService: PostService
   ) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
-      this.postSubscription = this.blogService.getPost(params.year, params.month, params.slug)
+      this.postSubscription = this.postService.getPost(params.year, params.month, params.slug)
       .subscribe(post => {
         this.post = post;
         this.seoService.setTitle(post.title)

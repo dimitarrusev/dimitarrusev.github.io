@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
+
 import { environment } from '../../../../environments/environment';
-import { Post } from '../../../core';
+import { Page, Post } from '../../models';
 
 @Injectable()
-export class BlogService {
+export class PostService {
   private posts = new ReplaySubject<Array<Post>>(1);
   public readonly posts$: Observable<Array<Post>> = this.posts.asObservable();
 

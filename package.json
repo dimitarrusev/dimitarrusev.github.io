@@ -12,7 +12,7 @@
     "deploy": "ngh --repo https://GH_TOKEN@github.com/dimitarrusev/dimitarrusev.github.io.git --branch master --message \"auto-generated message\"",
     "clean": "node scripts/clean.js",
     "preprocess": "node scripts/clean.js processOutput",
-    "process": "node scripts/process.js",
+    "process": "node scripts/process.js pages && node scripts/process.js posts",
     "generate": "node scripts/generate.js",
     "prerender": "node scripts/prerender.js",
     "copy": "node scripts/copy.js",
