@@ -55,6 +55,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "markdown-to-json": "^0.5.1",
     "marked": "^0.3.6",
+    "prismjs": "^1.7.0",
     "protractor": "~5.1.2",
     "reflect-metadata": "^0.1.10",
     "shelljs": "^0.7.8",

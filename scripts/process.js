@@ -7,7 +7,24 @@
 const fs = require('fs');
 const yaml = require('yaml-front-matter');
 const marked = require('marked');
+const prism = require('prismjs');
 const config = require('../build.conf');
+
+if (process.argv[2] === 'pages') {
+  const markdownEntries = getMarkdownEntries(config.process.pages.dir);
+  const processedPageEntries = processPageEntries(markdownEntries);
+
+  writeIndividualPageFiles(processedPageEntries);
+}
+
+if (process.argv[2] === 'posts') {
+  const markdownEntries = getMarkdownEntries(config.process.posts.dir);
+  const processedPostEntries = processPostEntries(markdownEntries);
+
+  writeIndividualPostFiles(processedPostEntries);
+
+  if (config.process.posts.outSummaryFilename) writeSummaryFile(processedPostEntries);
+}
 
 function getMarkdownEntries(dir) {
   let items = fs.readdirSync(dir);
@@ -31,7 +48,7 @@ function processPageEntries(pageEntries) {
     processedPageEntry.filename = pageEntry.replace(`${config.process.pages.dir}/`, '').split('.')[0] + '.json';
 
     // convert markdown to html
-    processedPageEntry[contentPropertyName] = marked(processedPageEntry[contentPropertyName]);
+    processedPageEntry[contentPropertyName] = convertMarkdownToHtml(processedPageEntry[contentPropertyName]);
 
     processedPageEntries.push(processedPageEntry);
   });
@@ -61,12 +78,33 @@ function processPostEntries(postEntries) {
     processedPostEntry.excerpt = processedPostEntry.content.slice(0, config.process.posts.excerptLength);
 
     // convert markdown to html
-    processedPostEntry[contentPropertyName] = marked(processedPostEntry[contentPropertyName]);
+    processedPostEntry[contentPropertyName] = convertMarkdownToHtml(processedPostEntry[contentPropertyName]);
 
     processedPostEntries.push(processedPostEntry);
   });
 
   return processedPostEntries;
+};
+
+function convertMarkdownToHtml(markdown) {
+  let customRenderer = new marked.Renderer();
+
+  customRenderer.code = (code, language) => {
+    return `<pre class="language-${ language }"><code class="language-${ language }">${ highlightSyntax(code, language) }</code></pre>`;
+  };
+
+  marked.setOptions({
+    renderer: customRenderer,
+    langPrefix: 'language-'
+  });
+
+  return marked(markdown);
+};
+
+function highlightSyntax(code, language) {
+  require(`prismjs/components/prism-${language}`);
+
+  return prism.highlight(code, prism.languages[language]);
 };
 
 function generateFilename(format, date, slug) {
@@ -155,20 +193,4 @@ function getMonthName(date) {
   ];
 
   return months[new Date(date).getMonth()];
-}
-
-if (process.argv[2] === 'pages') {
-  const markdownEntries = getMarkdownEntries(config.process.pages.dir);
-  const processedPageEntries = processPageEntries(markdownEntries);
-
-  writeIndividualPageFiles(processedPageEntries);
-}
-
-if (process.argv[2] === 'posts') {
-  const markdownEntries = getMarkdownEntries(config.process.posts.dir);
-  const processedPostEntries = processPostEntries(markdownEntries);
-
-  writeIndividualPostFiles(processedPostEntries);
-
-  if (config.process.posts.outSummaryFilename) writeSummaryFile(processedPostEntries);
 }

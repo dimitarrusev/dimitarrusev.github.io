@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core';
+import { SharedModule } from './shared';
 import { BlogModule } from './blog/blog.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -13,6 +14,7 @@ import { NotFoundComponent } from './not-found';
   imports: [
     BrowserModule.withServerTransition({ appId: 'dimitarrusev.github.io' }),
     CoreModule,
+    SharedModule,
     BlogModule,
     AppRoutingModule
   ],

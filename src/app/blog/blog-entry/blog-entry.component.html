@@ -1,4 +1,10 @@
-<p>Title: {{ post?.title }}<p>
-<p>Category: {{ post?.category }}</p>
-<p>Date: {{ post?.monthName.slice(0, 3) }} {{ post?.day }}, {{ post?.year }}</p>
-<p>Tags: {{ post?.tags }}</p>
+<dr-spinner *ngIf="!content"></dr-spinner>
+
+<ng-container *ngIf="content">
+  <p>Title: {{ post?.title }}<p>
+  <p>Category: {{ post?.category }}</p>
+  <p>Date: {{ post?.monthName.slice(0, 3) }} {{ post?.day }}, {{ post?.year }}</p>
+  <p>Tags: {{ post?.tags }}</p>
+
+  <div [innerHtml]="content"></div>
+</ng-container>
