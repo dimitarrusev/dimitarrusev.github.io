@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { throwIfAlreadyLoaded } from './guards';
 import { SeoService, PageService, PostService } from './services';
 import { UniversalInterceptor } from './interceptors';
 
@@ -20,4 +21,8 @@ import { UniversalInterceptor } from './interceptors';
     }
   ]
 })
-export class CoreModule {}
+export class CoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    throwIfAlreadyLoaded(parentModule, 'CoreModule');
+  }
+}

@@ -6,7 +6,7 @@ import { ContactComponent } from './contact';
 import { NotFoundComponent } from './not-found';
 
 const routes = [
-  { path: '', redirectTo: 'blog', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: 'blog' },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: '**', component: NotFoundComponent }
