@@ -18,13 +18,9 @@ export class PostResolverService implements Resolve<any> {
       let data;
 
       if (this.cache.get(slug)) {
-        console.log('serving from cache');
-
         data = this.cache.get(slug);
         resolve(data);
       } else {
-        console.log('fetching...');
-
         this.postService.getPost(route.params['year'], route.params['month'], route.params['slug'])
                         .subscribe(post => {
                           data = post;
