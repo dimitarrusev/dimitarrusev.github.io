@@ -1,33 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
-import { SeoService, PageService, Page } from '../core';
+import { SeoService } from '../core';
 
 @Component({
   selector: 'dr-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit, OnDestroy {
-  pageSubscription: Subscription;
+export class ContactComponent implements OnInit {
+  title: string;
+  description: string;
   content: SafeHtml;
 
   constructor(
+    private route: ActivatedRoute,
     private seoService: SeoService,
-    private pageService: PageService
   ) {}
 
   ngOnInit() {
-    this.pageSubscription = this.pageService.getPage('contact').subscribe(page => {
-      this.seoService.setTitle(page.title)
-                     .setDescription(page.description);
+    this.title = this.route.snapshot.data['page']['title'];
+    this.description = this.route.snapshot.data['page']['description'];
+    this.content = this.route.snapshot.data['page']['content'];
 
-      this.content = page.content;
-    });
-  }
-
-  ngOnDestroy() {
-    this.pageSubscription.unsubscribe();
+    this.seoService.setTitle(this.title)
+                   .setDescription(this.description);
   }
 }

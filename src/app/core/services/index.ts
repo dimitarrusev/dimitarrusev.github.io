@@ -1,3 +1,3 @@
-export * from './seo';
-export * from './page';
-export * from './post';
+export * from './data';
+export * from './interceptors';
+export * from './resolvers';

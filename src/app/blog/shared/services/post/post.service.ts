@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
-import { Page, Post } from '../../models';
+import { environment } from '../../../../../environments/environment';
+import { Post } from '../../models';
 
 @Injectable()
 export class PostService {

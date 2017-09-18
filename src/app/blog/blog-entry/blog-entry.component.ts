@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
-import { SeoService, PostService, Post } from '../../core';
+import { SeoService } from '../../core';
+import { PostService, Post } from '../shared';
 
 @Component({
   selector: 'dr-blog-entry',
@@ -11,30 +12,23 @@ import { SeoService, PostService, Post } from '../../core';
   styleUrls: ['./blog-entry.component.scss']
 })
 export class BlogEntryComponent implements OnInit {
-  paramsSubscription: Subscription;
-  postSubscription: Subscription;
+  title: string;
+  description: string;
   post: Post;
   content: SafeHtml;
 
   constructor(
     private route: ActivatedRoute,
-    private seoService: SeoService,
-    private postService: PostService
+    private seoService: SeoService
   ) {}
 
   ngOnInit() {
-    this.paramsSubscription = this.route.params.subscribe(params => {
-      this.postSubscription = this.postService.getPost(params.year, params.month, params.slug)
-      .subscribe(post => {
-        this.post = post;
-        this.content = post.content;
-        this.seoService.setTitle(post.title)
-                       .setDescription(post.excerpt);
-      });
-    })
-  }
+    this.title = this.route.snapshot.data['post']['title'];
+    this.description = this.route.snapshot.data['post']['excerpt'];
+    this.post = this.route.snapshot.data['post'];
+    this.content = this.route.snapshot.data['post']['content'];
 
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+    this.seoService.setTitle(this.title)
+                   .setDescription(this.description);
   }
 }

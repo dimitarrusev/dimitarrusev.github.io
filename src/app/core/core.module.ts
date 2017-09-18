@@ -4,8 +4,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NotFoundComponent } from './components';
 import { throwIfAlreadyLoaded } from './guards';
-import { SeoService, PageService, PostService } from './services';
-import { UniversalInterceptor } from './interceptors';
+import { SeoService, PageService, PageResolverService } from './services';
+import { UniversalInterceptor } from './services';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { UniversalInterceptor } from './interceptors';
   providers: [
     SeoService,
     PageService,
-    PostService,
+    PageResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UniversalInterceptor,

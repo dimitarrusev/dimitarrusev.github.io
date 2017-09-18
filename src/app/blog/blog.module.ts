@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../shared';
+import { PostService, PostResolverService, PostsResolverService } from './shared';
 import { BlogRoutingModule } from './blog-routing.module';
 
-import { BlogComponent } from './blog.component';
 import { BlogListComponent } from './blog-list';
 import { BlogEntryComponent } from './blog-entry';
 
@@ -17,9 +17,13 @@ import { BlogEntryComponent } from './blog-entry';
     BlogRoutingModule
   ],
   declarations: [
-    BlogComponent,
     BlogListComponent,
     BlogEntryComponent
+  ],
+  providers: [
+    PostService,
+    PostResolverService,
+    PostsResolverService
   ]
 })
 export class BlogModule {}

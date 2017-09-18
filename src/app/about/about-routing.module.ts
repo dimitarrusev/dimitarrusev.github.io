@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PageResolverService } from '../core';
 import { AboutComponent } from './about.component';
 
 const routes = [
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    data: {
+      slug: 'about'
+    },
+    resolve: {
+      page: PageResolverService
+    }
   }
 ];
 

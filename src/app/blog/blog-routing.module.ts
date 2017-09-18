@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BlogComponent } from './blog.component';
+import { PageResolverService } from '../core';
+import { PostsResolverService, PostResolverService } from './shared';
 import { BlogListComponent } from './blog-list';
 import { BlogEntryComponent } from './blog-entry';
 
@@ -9,15 +10,24 @@ import { BlogEntryComponent } from './blog-entry';
 const routes = [
   {
     path: 'blog',
-    component: BlogComponent,
     children: [
       {
         path: '',
-        component: BlogListComponent
+        component: BlogListComponent,
+        data: {
+          slug: 'blog'
+        },
+        resolve: {
+          page: PageResolverService,
+          posts: PostsResolverService
+        }
       },
       {
         path: ':year/:month/:slug',
-        component: BlogEntryComponent
+        component: BlogEntryComponent,
+        resolve: {
+          post: PostResolverService
+        }
       }
     ]
   }

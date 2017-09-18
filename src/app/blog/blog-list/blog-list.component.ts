@@ -1,7 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { PostService, Post } from '../../core';
+import { SeoService } from '../../core';
+import { Post } from '../shared';
 
 @Component({
   selector: 'dr-blog-list',
@@ -9,18 +11,21 @@ import { PostService, Post } from '../../core';
   styleUrls: ['./blog-list.component.scss']
 })
 export class BlogListComponent implements OnInit {
-  postsSubscription: Subscription;
+  title: string;
+  description: string;
   posts: Array<Post>;
 
   constructor(
-    private postService: PostService
+    private route: ActivatedRoute,
+    private seoService: SeoService
   ) {}
 
   ngOnInit() {
-    this.postsSubscription = this.postService.posts$.subscribe(posts => this.posts = posts);
-  }
+    this.title = this.route.snapshot.data['page']['title'];
+    this.description = this.route.snapshot.data['page']['description'];
+    this.posts = this.route.snapshot.data['posts'];
 
-  ngOnDestroy() {
-    this.postsSubscription.unsubscribe();
+    this.seoService.setTitle(this.title)
+                   .setDescription(this.description);
   }
 }
