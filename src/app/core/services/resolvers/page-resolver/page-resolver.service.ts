@@ -6,7 +6,7 @@ import { TransferState } from '../../../../../modules/transfer-state';
 import { PageService } from '../../data';
 
 @Injectable()
-export class PageResolverService implements Resolve<any> {
+export class PageResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
     private pageService: PageService,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageResolverService } from '../core';
+import { PageResolver } from '../core';
 import { PostsResolverService, PostResolverService } from './shared';
 import { BlogListComponent } from './blog-list';
 import { BlogEntryComponent } from './blog-entry';
@@ -18,7 +18,7 @@ const routes = [
           slug: 'blog'
         },
         resolve: {
-          page: PageResolverService,
+          page: PageResolver,
           posts: PostsResolverService
         }
       },

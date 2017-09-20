@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageResolverService } from '../core';
+import { PageResolver } from '../core';
 import { AboutComponent } from './about.component';
 
 const routes = [
@@ -12,7 +12,7 @@ const routes = [
       slug: 'about'
     },
     resolve: {
-      page: PageResolverService
+      page: PageResolver
     }
   }
 ];
