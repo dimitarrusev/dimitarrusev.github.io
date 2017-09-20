@@ -6,7 +6,7 @@ import { TransferState } from '../../../../../../modules/transfer-state';
 import { PostService } from '../../post';
 
 @Injectable()
-export class PostResolverService implements Resolve<any> {
+export class PostResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
     private postService: PostService,

@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { PostsResolverService } from './posts-resolver.service';
+import { PostsResolver } from './posts-resolver.service';
 
 describe('PostsResolverService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PostsResolverService]
+      providers: [PostsResolver]
     });
   });
 
-  it('should be created', inject([PostsResolverService], (service: PostsResolverService) => {
+  it('should be created', inject([PostsResolver], (service: PostsResolver) => {
     expect(service).toBeTruthy();
   }));
 });

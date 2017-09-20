@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageResolver } from '../core';
-import { PostsResolverService, PostResolverService } from './shared';
+import { PostsResolver, PostResolver } from './shared';
 import { BlogListComponent } from './blog-list';
 import { BlogEntryComponent } from './blog-entry';
 
@@ -19,14 +19,14 @@ const routes = [
         },
         resolve: {
           page: PageResolver,
-          posts: PostsResolverService
+          posts: PostsResolver
         }
       },
       {
         path: ':year/:month/:slug',
         component: BlogEntryComponent,
         resolve: {
-          post: PostResolverService
+          post: PostResolver
         }
       }
     ]
