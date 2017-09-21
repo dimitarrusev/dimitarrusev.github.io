@@ -25,8 +25,8 @@ module.exports = {
    * pages:
    * dir: directory containing page data in markdown format
    *
-   * posts:
-   * dir: directory containing blog posts in markdown format
+   * articles:
+   * dir: directory containing articles in markdown format
    * excerptLength: excerpt character length
    * outFilenameFormat: filename format for processed entries (supported formats: year-month-day-slug, year-month-slug, year-slug, slug)
    * outSummaryFilename: filename for the summary file (filename or false)
@@ -36,12 +36,12 @@ module.exports = {
       dir: 'src/content/pages',
       contentPropertyName: 'content'
     },
-    posts: {
-      dir: 'src/content/posts',
+    articles: {
+      dir: 'src/content/articles',
       contentPropertyName: 'content',
       excerptLength: 100,
       outFilenameFormat: 'year-month-slug',
-      outSummaryFilename: 'posts.json'
+      outSummaryFilename: 'articles.json'
     }
   },
 
@@ -60,10 +60,10 @@ module.exports = {
     routes: [
       '/',
       'about',
-      'blog',
-      'blog/2017/08/first-post',
-      'blog/2017/08/second-post',
-      'blog/2017/09/third-post',
+      'articles',
+      'articles/2017/08/first-post',
+      'articles/2017/08/second-post',
+      'articles/2017/09/third-post',
       'contact'
     ],
     type: 'dynamic',

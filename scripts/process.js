@@ -17,13 +17,13 @@ if (process.argv[2] === 'pages') {
   writeIndividualPageFiles(processedPageEntries);
 }
 
-if (process.argv[2] === 'posts') {
-  const markdownEntries = getMarkdownEntries(config.process.posts.dir);
-  const processedPostEntries = processPostEntries(markdownEntries);
+if (process.argv[2] === 'articles') {
+  const markdownEntries = getMarkdownEntries(config.process.articles.dir);
+  const processedArticleEntries = processArticleEntries(markdownEntries);
 
-  writeIndividualPostFiles(processedPostEntries);
+  writeIndividualArticleFiles(processedArticleEntries);
 
-  if (config.process.posts.outSummaryFilename) writeSummaryFile(processedPostEntries);
+  if (config.process.articles.outSummaryFilename) writeSummaryFile(processedArticleEntries);
 }
 
 function getMarkdownEntries(dir) {
@@ -56,34 +56,34 @@ function processPageEntries(pageEntries) {
   return processedPageEntries;
 };
 
-function processPostEntries(postEntries) {
-  let processedPostEntries = [];
+function processArticleEntries(articleEntries) {
+  let processedArticleEntries = [];
 
-  postEntries.forEach(postEntry => {
-    let contentPropertyName = config.process.posts.contentPropertyName;
-    let processedPostEntry = yaml.loadFront(postEntry, contentPropertyName);
+  articleEntries.forEach(articleEntry => {
+    let contentPropertyName = config.process.articles.contentPropertyName;
+    let processedArticleEntry = yaml.loadFront(articleEntry, contentPropertyName);
 
-    let date = processedPostEntry.date.split('-');
+    let date = processedArticleEntry.date.split('-');
 
     // add year, month and day props
-    processedPostEntry.year = date[0];
-    processedPostEntry.month = date[1];
-    processedPostEntry.day = date[2];
+    processedArticleEntry.year = date[0];
+    processedArticleEntry.month = date[1];
+    processedArticleEntry.day = date[2];
 
     // add monthname and dayname props
-    processedPostEntry.monthName = getMonthName(processedPostEntry.date);
-    processedPostEntry.dayName = getDayName(processedPostEntry.date);
+    processedArticleEntry.monthName = getMonthName(processedArticleEntry.date);
+    processedArticleEntry.dayName = getDayName(processedArticleEntry.date);
 
     // add excerpt prop
-    processedPostEntry.excerpt = processedPostEntry.content.slice(0, config.process.posts.excerptLength);
+    processedArticleEntry.excerpt = processedArticleEntry.content.slice(0, config.process.articles.excerptLength);
 
     // convert markdown to html
-    processedPostEntry[contentPropertyName] = convertMarkdownToHtml(processedPostEntry[contentPropertyName]);
+    processedArticleEntry[contentPropertyName] = convertMarkdownToHtml(processedArticleEntry[contentPropertyName]);
 
-    processedPostEntries.push(processedPostEntry);
+    processedArticleEntries.push(processedArticleEntry);
   });
 
-  return processedPostEntries;
+  return processedArticleEntries;
 };
 
 function convertMarkdownToHtml(markdown) {
@@ -141,16 +141,16 @@ function writeIndividualPageFiles(files) {
   });
 }
 
-function writeIndividualPostFiles(files) {
+function writeIndividualArticleFiles(files) {
   files.forEach(file => {
-    let filename = generateFilename(config.process.posts.outFilenameFormat, file.date, file.slug);
+    let filename = generateFilename(config.process.articles.outFilenameFormat, file.date, file.slug);
 
-    fs.writeFileSync(`${config.process.posts.dir}/${filename}`, JSON.stringify(file));
+    fs.writeFileSync(`${config.process.articles.dir}/${filename}`, JSON.stringify(file));
   });
 };
 
 function writeSummaryFile(files) {
-  let summaryFilename = config.process.posts.outSummaryFilename;
+  let summaryFilename = config.process.articles.outSummaryFilename;
   let summary = files.map(entry => {
     let file = Object.assign({}, entry);
 
@@ -159,7 +159,7 @@ function writeSummaryFile(files) {
     return file;
   });
 
-  fs.writeFileSync(`${config.process.posts.dir}/${summaryFilename}`, JSON.stringify(summary));
+  fs.writeFileSync(`${config.process.articles.dir}/${summaryFilename}`, JSON.stringify(summary));
 }
 
 function getDayName(date) {

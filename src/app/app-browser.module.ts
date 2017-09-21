@@ -5,7 +5,7 @@ import { BrowserTransferStateModule } from '../modules/transfer-state';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
 import { AboutModule } from './about';
-import { BlogModule } from './blog';
+import { ArticlesModule } from './articles';
 import { ContactModule } from './contact';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AboutModule,
-    BlogModule,
+    ArticlesModule,
     ContactModule,
     AppRoutingModule
   ],

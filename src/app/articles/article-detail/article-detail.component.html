@@ -1,0 +1,6 @@
+<p>Title: {{ article?.title }}<p>
+<p>Category: {{ article?.category }}</p>
+<p>Date: {{ article?.monthName.slice(0, 3) }} {{ article?.day }}, {{ article?.year }}</p>
+<p>Tags: {{ article?.tags }}</p>
+
+<div [innerHtml]="content"></div>
