@@ -145,7 +145,7 @@ function writeIndividualArticleFiles(files) {
   files.forEach(file => {
     let filename = generateFilename(config.process.articles.outFilenameFormat, file.date, file.slug);
 
-    fs.writeFileSync(`${config.process.articles.dir}/${filename}`, JSON.stringify(file));
+    fs.writeFileSync(`${config.process.articles.dir}/${filename}`, JSON.stringify(file), { flag: 'wx' });
   });
 };
 

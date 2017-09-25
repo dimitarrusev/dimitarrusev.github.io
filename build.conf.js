@@ -40,7 +40,7 @@ module.exports = {
       dir: 'src/content/articles',
       contentPropertyName: 'content',
       excerptLength: 100,
-      outFilenameFormat: 'year-month-slug',
+      outFilenameFormat: 'slug',
       outSummaryFilename: 'articles.json'
     }
   },

@@ -17,7 +17,7 @@ export class ArticleService {
                           .subscribe(result => this.articles.next(result));
   }
 
-  getArticle(year, month, title): Observable<Article> {
-    return this.httpClient.get(`${environment.articlesUrlBase}/${year}-${month}-${title}.json`);
+  getArticle(title): Observable<Article> {
+    return this.httpClient.get(`${environment.articlesUrlBase}/${title}.json`);
   }
 }

@@ -14,14 +14,15 @@ export class ArticleResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = `${ route.params['year'] }-${ route.params['month'] }-${ route.params['slug'] }`;
+      let slug = route.params['slug'];
       let data;
 
       if (this.cache.get(slug)) {
         data = this.cache.get(slug);
+
         resolve(data);
       } else {
-        this.articleService.getArticle(route.params['year'], route.params['month'], route.params['slug'])
+        this.articleService.getArticle(route.params['slug'])
                            .subscribe(post => {
                               data = post;
 

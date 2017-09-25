@@ -23,7 +23,7 @@ const routes = [
         }
       },
       {
-        path: ':year/:month/:slug',
+        path: ':slug',
         component: ArticleDetailComponent,
         resolve: {
           article: ArticleResolver
