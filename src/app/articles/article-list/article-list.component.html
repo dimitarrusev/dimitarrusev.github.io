@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let article of articles">
-    <a [routerLink]="[article.slug]">{{ article.title }}</a>
+    <a [routerLink]="['articles', article.slug]">{{ article.title }}</a>
     <p>{{ article.category }}</p>
     <p>{{ article.monthName.slice(0, 3) }} {{ article.day }}, {{ article.year }}</p>
     <p>{{ article.excerpt }}</p>

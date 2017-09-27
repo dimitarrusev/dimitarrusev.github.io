@@ -61,9 +61,9 @@ module.exports = {
       '/',
       'about',
       'articles',
-      'articles/2017/08/first-post',
-      'articles/2017/08/second-post',
-      'articles/2017/09/third-post',
+      'articles/first-post',
+      'articles/second-post',
+      'articles/third-post',
       'contact'
     ],
     type: 'dynamic',

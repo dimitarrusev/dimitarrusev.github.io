@@ -9,7 +9,7 @@ import { ArticleDetailComponent } from './article-detail';
 
 const routes = [
   {
-    path: 'articles',
+    path: '',
     children: [
       {
         path: '',
@@ -23,7 +23,8 @@ const routes = [
         }
       },
       {
-        path: ':slug',
+        path: 'articles/:slug',
+        pathMatch: 'full',
         component: ArticleDetailComponent,
         resolve: {
           article: ArticleResolver
