@@ -10,7 +10,7 @@ before_script:
   - npm run start &
 
 script:
-  - npm run build
+  - npm run build:prod
 
 after_success:
   - npm run deploy
