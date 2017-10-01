@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/concat';
+import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/takeWhile';
 
 import { TransferState } from '../../../../../../modules/transfer-state';
 import { ArticleService } from '../../article';
@@ -9,25 +13,30 @@ import { ArticleService } from '../../article';
 export class ArticlesResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
-    private articleservice: ArticleService,
+    private articleService: ArticleService,
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = 'posts';
-      let data;
+      let slug = route.params['slug'];
 
       if (this.cache.get(slug)) {
-        data = this.cache.get(slug);
-        resolve(data);
+        resolve(this.cache.get(slug));
       } else {
-        this.articleservice.getArticles();
-        this.articleservice.articles$
-                           .subscribe(articles => {
-                              data = articles;
+        this.articleService.articlesDownloadProgress$
+                           .skip(1)
+                           .takeWhile((percentDone: number) => percentDone < 100)
+                           .concat(this.articleService.articlesDownloadProgress$.take(1))
+                           .subscribe((percentDone: number) => {
+                             console.log(`loading articles: ${percentDone}%`);
+                           }, (err) => console.log(err));
 
-                              this.cache.set(slug, data);
-                              resolve(data);
+        this.articleService.articles$
+                           .skip(1)
+                           .take(1)
+                           .subscribe(articles => {
+                              this.cache.set(slug, articles);
+                              resolve(articles);
                            }, (err) => console.log(err));
       }
     });
