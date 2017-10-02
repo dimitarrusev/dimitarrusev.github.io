@@ -7,12 +7,14 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/takeWhile';
 
 import { TransferState } from '../../../../../../modules/transfer-state';
+import { ProgressBarService } from '../../../../../shared';
 import { ArticleService } from '../../article';
 
 @Injectable()
 export class ArticleResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
+    private progressBarService: ProgressBarService,
     private articleService: ArticleService,
   ) {}
 
@@ -23,6 +25,7 @@ export class ArticleResolver implements Resolve<any> {
       if (this.cache.get(slug)) {
         resolve(this.cache.get(slug));
       } else {
+        this.progressBarService.showProgressBar();
         this.articleService.getArticle(slug);
 
         this.articleService.articleDownloadProgress$
@@ -30,7 +33,9 @@ export class ArticleResolver implements Resolve<any> {
                            .takeWhile((percentDone: number) => percentDone < 100)
                            .concat(this.articleService.articleDownloadProgress$.take(1))
                            .subscribe((percentDone: number) => {
-                             console.log(`loading article: ${percentDone}%`);
+                             (percentDone < 100)
+                               ? this.progressBarService.updateProgress(percentDone)
+                               : this.progressBarService.hideProgressBar();
                            }, (err) => console.log(err));
 
         this.articleService.article$

@@ -7,13 +7,15 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/takeWhile';
 
 import { TransferState } from '../../../../../modules/transfer-state';
+import { ProgressBarService } from '../../../../shared';
 import { PageService } from '../../data';
 
 @Injectable()
 export class PageResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
-    private pageService: PageService,
+    private progressBarService: ProgressBarService,
+    private pageService: PageService
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
@@ -24,14 +26,16 @@ export class PageResolver implements Resolve<any> {
       if (this.cache.get(slug)) {
         resolve(this.cache.get(slug));
       } else {
+        this.progressBarService.showProgressBar();
         this.pageService.getPage(slug);
-
         this.pageService.pageDownloadProgress$
                         .skip(1)
                         .takeWhile((percentDone: number) => percentDone < 100)
                         .concat(this.pageService.pageDownloadProgress$.take(1))
                         .subscribe((percentDone: number) => {
-                          console.log(`loading page: ${percentDone}%`);
+                          (percentDone < 100)
+                            ? this.progressBarService.updateProgress(percentDone)
+                            : this.progressBarService.hideProgressBar();
                         }, (err) => console.log(err));
 
         this.pageService.page$

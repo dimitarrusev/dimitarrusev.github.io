@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProgressBarComponent } from './components';
+import { ProgressBarComponent, ProgressBarService } from './components';
 
 @NgModule({
   imports: [
@@ -12,6 +12,9 @@ import { ProgressBarComponent } from './components';
   ],
   declarations: [
     ProgressBarComponent
+  ],
+  providers: [
+    ProgressBarService
   ]
 })
 export class SharedModule {}
