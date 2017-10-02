@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ProgressBarComponent } from './components';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
-    SpinnerComponent
+    ProgressBarComponent
   ],
   declarations: [
-    SpinnerComponent
+    ProgressBarComponent
   ]
 })
 export class SharedModule {}
