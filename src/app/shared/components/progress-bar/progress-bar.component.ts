@@ -8,7 +8,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./progress-bar.component.scss']
 })
 export class ProgressBarComponent implements OnInit {
-  constructor(private progressBarService: ProgressBarService) {}
+  constructor(public progressBarService: ProgressBarService) {}
 
   ngOnInit() {}
 }
