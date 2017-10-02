@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/concat';
+import 'rxjs/add/operator/skip';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/takeWhile';
 
 import { TransferState } from '../../../../../modules/transfer-state';
 import { PageService } from '../../data';
@@ -18,13 +22,23 @@ export class PageResolver implements Resolve<any> {
       let data;
 
       if (this.cache.get(slug)) {
-
-        data = this.cache.get(slug);
-        resolve(data);
+        resolve(this.cache.get(slug));
       } else {
-        this.pageService.getPage(slug)
+        this.pageService.getPage(slug);
+
+        this.pageService.pageDownloadProgress$
+                        .skip(1)
+                        .takeWhile((percentDone: number) => percentDone < 100)
+                        .concat(this.pageService.pageDownloadProgress$.take(1))
+                        .subscribe((percentDone: number) => {
+                          console.log(`loading page: ${percentDone}%`);
+                        }, (err) => console.log(err));
+
+        this.pageService.page$
+                        .skip(1)
+                        .take(1)
                         .subscribe(page => {
-                          data = {
+                          let data = {
                             title: page.title,
                             description: page.description,
                             content: page.content

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/take';
 
