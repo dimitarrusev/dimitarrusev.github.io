@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/concat';
@@ -16,6 +17,7 @@ export class ArticleResolver implements Resolve<any> {
     private cache: TransferState,
     private progressBarService: ProgressBarService,
     private articleService: ArticleService,
+    @Inject(PLATFORM_ID) private platformId: string
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
@@ -25,18 +27,20 @@ export class ArticleResolver implements Resolve<any> {
       if (this.cache.get(slug)) {
         resolve(this.cache.get(slug));
       } else {
-        this.progressBarService.showProgressBar();
         this.articleService.getArticle(slug);
 
-        this.articleService.articleDownloadProgress$
-                           .skip(1)
-                           .takeWhile((percentDone: number) => percentDone < 100)
-                           .concat(this.articleService.articleDownloadProgress$.take(1))
-                           .subscribe((percentDone: number) => {
-                             (percentDone < 100)
-                               ? this.progressBarService.updateProgress(percentDone)
-                               : this.progressBarService.hideProgressBar();
-                           }, (err) => console.log(err));
+        if (isPlatformBrowser(this.platformId)) {
+          this.progressBarService.showProgressBar();
+          this.articleService.articleDownloadProgress$
+                             .skip(1)
+                             .takeWhile((percentDone: number) => percentDone < 100)
+                             .concat(this.articleService.articleDownloadProgress$.take(1))
+                             .subscribe((percentDone: number) => {
+                               (percentDone < 100)
+                                 ? this.progressBarService.updateProgress(percentDone)
+                                 : this.progressBarService.hideProgressBar();
+                             }, (err) => console.log(err));
+        }
 
         this.articleService.article$
                            .skip(1)

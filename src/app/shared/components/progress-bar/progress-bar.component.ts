@@ -8,6 +8,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./progress-bar.component.scss']
 })
 export class ProgressBarComponent implements OnInit {
+  isHidden: boolean;
+
   constructor(public progressBarService: ProgressBarService) {}
 
   ngOnInit() {}

@@ -18,7 +18,7 @@ export class ArticlesResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = route.params['slug'];
+      let slug = route.data.slug;
 
       if (this.cache.get(slug)) {
         resolve(this.cache.get(slug));
@@ -28,7 +28,7 @@ export class ArticlesResolver implements Resolve<any> {
                            .takeWhile((percentDone: number) => percentDone < 100)
                            .concat(this.articleService.articlesDownloadProgress$.take(1))
                            .subscribe((percentDone: number) => {
-                             console.log(`loading articles: ${percentDone}%`);
+                             // console.log(`loading articles: ${percentDone}%`);
                            }, (err) => console.log(err));
 
         this.articleService.articles$

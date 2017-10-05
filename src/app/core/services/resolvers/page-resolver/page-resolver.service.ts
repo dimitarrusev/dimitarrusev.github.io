@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/concat';
@@ -15,7 +16,8 @@ export class PageResolver implements Resolve<any> {
   constructor(
     private cache: TransferState,
     private progressBarService: ProgressBarService,
-    private pageService: PageService
+    private pageService: PageService,
+    @Inject(PLATFORM_ID) private platformId: string
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
@@ -26,17 +28,20 @@ export class PageResolver implements Resolve<any> {
       if (this.cache.get(slug)) {
         resolve(this.cache.get(slug));
       } else {
-        this.progressBarService.showProgressBar();
         this.pageService.getPage(slug);
-        this.pageService.pageDownloadProgress$
-                        .skip(1)
-                        .takeWhile((percentDone: number) => percentDone < 100)
-                        .concat(this.pageService.pageDownloadProgress$.take(1))
-                        .subscribe((percentDone: number) => {
-                          (percentDone < 100)
-                            ? this.progressBarService.updateProgress(percentDone)
-                            : this.progressBarService.hideProgressBar();
-                        }, (err) => console.log(err));
+
+        if (isPlatformBrowser(this.platformId)) {
+          this.progressBarService.showProgressBar();
+          this.pageService.pageDownloadProgress$
+                          .skip(1)
+                          .takeWhile((percentDone: number) => percentDone < 100)
+                          .concat(this.pageService.pageDownloadProgress$.take(1))
+                          .subscribe((percentDone: number) => {
+                            (percentDone < 100)
+                              ? this.progressBarService.updateProgress(percentDone)
+                              : this.progressBarService.hideProgressBar();
+                          }, (err) => console.log(err));
+        }
 
         this.pageService.page$
                         .skip(1)
