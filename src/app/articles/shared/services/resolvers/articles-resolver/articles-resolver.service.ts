@@ -18,10 +18,11 @@ export class ArticlesResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = route.data.slug;
+      let urlSlug = route.data.slug;
+      let cacheSlug = `data-${route.data.slug}`;
 
-      if (this.cache.get(slug)) {
-        resolve(this.cache.get(slug));
+      if (this.cache.get(cacheSlug)) {
+        resolve(this.cache.get(cacheSlug));
       } else {
         this.articleService.articlesDownloadProgress$
                            .skip(1)
@@ -35,7 +36,7 @@ export class ArticlesResolver implements Resolve<any> {
                            .skip(1)
                            .take(1)
                            .subscribe(articles => {
-                              this.cache.set(slug, articles);
+                              this.cache.set(cacheSlug, articles);
                               resolve(articles);
                            }, (err) => console.log(err));
       }

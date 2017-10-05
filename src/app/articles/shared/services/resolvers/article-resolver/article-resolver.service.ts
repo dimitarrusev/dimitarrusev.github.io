@@ -22,12 +22,13 @@ export class ArticleResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = route.params['slug'];
+      let urlSlug = route.params.slug;
+      let cacheSlug = `data-${route.params.slug}`;
 
-      if (this.cache.get(slug)) {
-        resolve(this.cache.get(slug));
+      if (this.cache.get(cacheSlug)) {
+        resolve(this.cache.get(cacheSlug));
       } else {
-        this.articleService.getArticle(slug);
+        this.articleService.getArticle(urlSlug);
 
         if (isPlatformBrowser(this.platformId)) {
           this.progressBarService.showProgressBar();
@@ -46,7 +47,7 @@ export class ArticleResolver implements Resolve<any> {
                            .skip(1)
                            .take(1)
                            .subscribe(article => {
-                              this.cache.set(slug, article);
+                              this.cache.set(cacheSlug, article);
                               resolve(article);
                            }, (err) => console.log(err));
       }

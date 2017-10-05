@@ -22,13 +22,13 @@ export class PageResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let slug = route.data.slug;
-      let data;
+      let urlSlug = route.data.slug;
+      let cacheSlug = `page-${route.data.slug}`;
 
-      if (this.cache.get(slug)) {
-        resolve(this.cache.get(slug));
+      if (this.cache.get(cacheSlug)) {
+        resolve(this.cache.get(cacheSlug));
       } else {
-        this.pageService.getPage(slug);
+        this.pageService.getPage(urlSlug);
 
         if (isPlatformBrowser(this.platformId)) {
           this.progressBarService.showProgressBar();
@@ -53,7 +53,7 @@ export class PageResolver implements Resolve<any> {
                             content: page.content
                           };
 
-                          this.cache.set(slug, data);
+                          this.cache.set(cacheSlug, data);
                           resolve(data);
                         }, (err) => console.log(err));
       }
