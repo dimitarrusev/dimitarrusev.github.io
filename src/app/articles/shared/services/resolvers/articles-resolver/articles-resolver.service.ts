@@ -24,6 +24,7 @@ export class ArticlesResolver implements Resolve<any> {
       if (this.cache.get(cacheSlug)) {
         resolve(this.cache.get(cacheSlug));
       } else {
+        this.articleService.getArticles();
         this.articleService.articlesDownloadProgress$
                            .skip(1)
                            .takeWhile((percentDone: number) => percentDone < 100)
