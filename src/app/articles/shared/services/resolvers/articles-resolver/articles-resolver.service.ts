@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/take';
@@ -18,8 +18,8 @@ export class ArticlesResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let urlSlug = route.data.slug;
-      let cacheSlug = `data-${route.data.slug}`;
+      const urlSlug = route.data.slug;
+      const cacheSlug = `data-${route.data.slug}`;
 
       if (this.cache.get(cacheSlug)) {
         resolve(this.cache.get(cacheSlug));

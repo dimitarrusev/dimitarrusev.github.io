@@ -1,5 +1,7 @@
 import { NgModule, APP_BOOTSTRAP_LISTENER, ApplicationRef } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/first';
 
 import { ServerTransferStateModule, TransferState } from '../modules/transfer-state';
 import { AppBrowserModule } from './app-browser.module';

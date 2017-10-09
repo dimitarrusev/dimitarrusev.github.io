@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/take';
@@ -22,8 +22,8 @@ export class ArticleResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let urlSlug = route.params.slug;
-      let cacheSlug = `data-${route.params.slug}`;
+      const urlSlug = route.params.slug;
+      const cacheSlug = `data-${route.params.slug}`;
 
       if (this.cache.get(cacheSlug)) {
         resolve(this.cache.get(cacheSlug));

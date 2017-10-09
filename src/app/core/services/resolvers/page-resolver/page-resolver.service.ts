@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/skip';
 import 'rxjs/add/operator/take';
@@ -22,8 +22,8 @@ export class PageResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      let urlSlug = route.data.slug;
-      let cacheSlug = `page-${route.data.slug}`;
+      const urlSlug = route.data.slug;
+      const cacheSlug = `page-${route.data.slug}`;
 
       if (this.cache.get(cacheSlug)) {
         resolve(this.cache.get(cacheSlug));
@@ -47,7 +47,7 @@ export class PageResolver implements Resolve<any> {
                         .skip(1)
                         .take(1)
                         .subscribe(page => {
-                          let data = {
+                          const data = {
                             title: page.title,
                             description: page.description,
                             content: page.content

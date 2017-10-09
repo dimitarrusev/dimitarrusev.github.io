@@ -11,4 +11,4 @@ export class Article {
   slug: string;
   excerpt: string;
   content?: string;
-};
+}

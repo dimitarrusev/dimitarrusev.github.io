@@ -1,5 +1,6 @@
 import { Injectable, Optional, SkipSelf } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export type Visibility = 'visible' | 'hidden';
 
@@ -12,7 +13,7 @@ export class ProgressBarService {
   progress$: Observable<Number> = this.progress.asObservable();
 
   constructor(@Optional() @SkipSelf() prior: ProgressBarService) {
-    if (prior) return prior;
+    if (prior) { return prior; }
   }
 
   showProgressBar() {

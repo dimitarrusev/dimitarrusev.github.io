@@ -64,6 +64,7 @@ module.exports = {
       'articles/first-post',
       'articles/second-post',
       'articles/third-post',
+      'articles/fourth-post',
       'contact'
     ],
     type: 'dynamic',
