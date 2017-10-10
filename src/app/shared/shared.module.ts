@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProgressBarComponent, ProgressBarService } from './components';
+import { ProgressBarComponent, ProgressBarService, RemarkboxComponent } from './components';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
-    ProgressBarComponent
+    ProgressBarComponent,
+    RemarkboxComponent
   ],
   declarations: [
-    ProgressBarComponent
+    ProgressBarComponent,
+    RemarkboxComponent
   ],
   providers: [
     ProgressBarService
