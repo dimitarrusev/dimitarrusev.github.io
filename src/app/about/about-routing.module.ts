@@ -6,7 +6,7 @@ import { AboutComponent } from './about.component';
 
 const routes = [
   {
-    path: 'about',
+    path: '',
     component: AboutComponent,
     data: {
       slug: 'about'
@@ -19,7 +19,7 @@ const routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

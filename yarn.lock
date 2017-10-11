@@ -179,6 +179,10 @@
     magic-string "^0.22.3"
     source-map "^0.5.6"
 
+"@nguniversal/module-map-ngfactory-loader@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-1.0.0-beta.3.tgz#50ab9e5f00e9815f2fa5a69dbfae5bda41b7bfa2"
+
 "@schematics/angular@~0.0.38":
   version "0.0.41"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.0.41.tgz#9deccd92791877f87365ed8991062132f3b645e0"
@@ -1027,7 +1031,7 @@ commander@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-1.0.0.tgz#5e6a88e7070ff5908836ead19169548c30f90bcd"
 
-commander@2.11.x, commander@^2.9.0, commander@~2.11.0:
+commander@2.11.x, commander@~2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
@@ -3130,10 +3134,6 @@ lodash.tail@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.tail/-/lodash.tail-4.1.1.tgz#d2333a36d9e7717c8ad2f7cacafec7c32b444664"
 
-lodash.truncate@^4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
-
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -3206,15 +3206,6 @@ make-error@^1.1.1:
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
-
-markdown-to-json@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/markdown-to-json/-/markdown-to-json-0.5.1.tgz#c944042cedb2f33c61521fab0bce6c9ac47acc3a"
-  dependencies:
-    commander "^2.9.0"
-    lodash.truncate "^4.4.2"
-    moment "^2.17.1"
-    yaml-front-matter "^3.4.0"
 
 marked@^0.3.6:
   version "0.3.6"
@@ -3371,10 +3362,6 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-moment@^2.17.1:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 ms@0.7.1:
   version "0.7.1"

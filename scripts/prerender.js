@@ -11,7 +11,8 @@ const path = require('path');
 const shell = require('shelljs');
 const config = require('../build.conf.js');
 const { renderModuleFactory } = require('@angular/platform-server');
-const { AppServerModuleNgFactory } = require('../build/server/main.bundle.js');
+const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../build/server/main.bundle.js');
 
 const routes = config.prerender.routes;
 const document = fs.readFileSync(path.resolve(__dirname, '../', config.prerender.document), 'utf-8');
@@ -20,10 +21,13 @@ const outDir = path.resolve(__dirname, '../', config.prerender.outDir);
 
 routes.forEach(route => {
   let url = route;
-  let extraProviders = [{
-    provide: 'serverUrl',
-    useValue: 'http://localhost:4200/'
-  }];
+  let extraProviders = [
+    provideModuleMap(LAZY_MODULE_MAP),
+    {
+      provide: 'serverUrl',
+      useValue: 'http://localhost:4200/'
+    }
+  ];
 
   renderModuleFactory(
     AppServerModuleNgFactory,

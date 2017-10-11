@@ -6,7 +6,7 @@ import { ContactComponent } from './contact.component';
 
 const routes = [
   {
-    path: 'contact',
+    path: '',
     component: ContactComponent,
     data: {
       slug: 'contact'
@@ -19,7 +19,7 @@ const routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

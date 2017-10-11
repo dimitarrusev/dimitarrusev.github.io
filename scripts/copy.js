@@ -32,7 +32,8 @@ const dynamicAssets = [
   `${browserAppOutDir}/inline.*`,
   `${browserAppOutDir}/polyfills.*`,
   `${browserAppOutDir}/vendor.*`,
-  `${browserAppOutDir}/main.*`
+  `${browserAppOutDir}/main.*`,
+  `${browserAppOutDir}/*.chunk.*`,
 ];
 
 const assetsAndContent = (prerenderType === 'static') ? [...staticAssets, pages, articles] : [...dynamicAssets, pages, articles];

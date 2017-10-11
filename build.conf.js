@@ -3,7 +3,7 @@ const angularCliConfig = JSON.parse(fs.readFileSync('.angular-cli.json', 'utf-8'
 
 module.exports = {
   /**
-   * .angular-cli.json configuration schema
+   * build configuration
    *
    * Dupcliate properties for ease of use.
    *
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   /**
-   * process.js configuration schema
+   * process.js configuration
    *
    * Processes markdown files to json.
    *
@@ -46,7 +46,7 @@ module.exports = {
   },
 
   /**
-   * prerender.js configuration schema
+   * prerender.js configuration
    *
    * Prerenders and spits out static or dynamic page for each route.
    *
@@ -71,5 +71,5 @@ module.exports = {
     document: 'build/browser/index.html',
     permalink: 'pretty',
     outDir: 'dist'
-  }
+  },
 };

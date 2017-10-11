@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserTransferStateModule } from '../modules/transfer-state';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
-import { AboutModule } from './about';
-import { ArticlesModule } from './articles';
-import { ContactModule } from './contact';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -15,11 +13,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'dimitarrusev.github.io' }),
     BrowserTransferStateModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
-    AboutModule,
-    ArticlesModule,
-    ContactModule,
     AppRoutingModule
   ],
   declarations: [
