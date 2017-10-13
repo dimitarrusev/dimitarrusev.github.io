@@ -11,4 +11,4 @@ Please note that despite being open sourced, the materials herein remain copyrig
 
 Code is licensed under an MIT license.
 
-Any parts of the design and content may not be reused without my permission.
+Any part of the design and content may not be reused without my permission.
