@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProgressBarComponent, ProgressBarService, RemarkboxComponent } from './components';
+import { MailingListComponent } from './components/mailing-list';
 
 @NgModule({
   imports: [
@@ -9,11 +10,13 @@ import { ProgressBarComponent, ProgressBarService, RemarkboxComponent } from './
   ],
   exports: [
     ProgressBarComponent,
-    RemarkboxComponent
+    RemarkboxComponent,
+    MailingListComponent
   ],
   declarations: [
     ProgressBarComponent,
-    RemarkboxComponent
+    RemarkboxComponent,
+    MailingListComponent
   ],
   providers: [
     ProgressBarService

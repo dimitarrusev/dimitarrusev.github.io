@@ -1,8 +1,21 @@
 <ul>
   <li *ngFor="let article of articles">
-    <a [routerLink]="['articles', article.slug]">{{ article.title }}</a>
-    <p>{{ article.category }}</p>
-    <p>{{ article.monthName.slice(0, 3) }} {{ article.day }}, {{ article.year }}</p>
-    <p>{{ article.excerpt }}</p>
+    <p class="title"><a [routerLink]="['articles', article.slug]">{{ article.title }}</a></p>
+
+    <div class="category">
+      <p>category: {{ article.category }}</p>
+    </div>
+
+    <div class="date">
+      <div class="published">
+        <p>published: {{ article.monthName.slice(0, 3) }} {{ article.day }}, {{ article.year }}</p>
+      </div>
+    </div>
+
+    <div class="excerpt">
+      <p>{{ article.excerpt }}</p>
+    </div>
   </li>
 </ul>
+
+<dr-mailing-list></dr-mailing-list>

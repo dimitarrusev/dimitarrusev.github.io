@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  margin: 0 40px;
+  padding: 30px 0;
+}
+
+.meta {
+  border-top: 1px dashed rgba(202, 202, 202, 0.50);
+  border-bottom: 1px dashed rgba(202, 202, 202, 0.50);
+
+  .category,
+  .tags,
+  .date {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .tags {
+    p, ul, ul > li { display: inline-block; }
+  }
+}
+
+.content {
+  margin: 21.44px 0;
+}

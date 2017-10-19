@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  margin: 0 40px;
+  padding: 30px 0;
+}
+
+ul {
+  padding: 0 0 30px 0;
+  list-style: none;
+
+  li {
+    border-bottom: 1px dashed rgba(202, 202, 202, 0.50);
+
+    &:first-child {
+      .title {
+        margin-top: 0px;
+      }
+    }
+
+    &:last-child {
+      border-bottom: none;
+
+      .excerpt {
+        margin-bottom: 0px;
+      }
+    }
+
+    .category,
+    .date {
+      display: inline-block;
+      margin-right: 10px;
+
+      p { margin: 0; }
+    }
+  }
+}

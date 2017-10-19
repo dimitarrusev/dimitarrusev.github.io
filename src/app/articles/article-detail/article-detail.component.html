@@ -1,8 +1,23 @@
-<p>Title: {{ article?.title }}<p>
-<p>Category: {{ article?.category }}</p>
-<p>Date: {{ article?.monthName.slice(0, 3) }} {{ article?.day }}, {{ article?.year }}</p>
-<p>Tags: {{ article?.tags }}</p>
+<h1>{{ article?.title }}</h1>
 
-<div [innerHtml]="content"></div>
+<div class="meta">
+  <p class="category">Category: {{ article?.category }}</p>
 
+  <div class="tags">
+    <p>Tags:</p>
+    <ul *ngIf="article.tags">
+      <li *ngFor="let tag of article.tags; let lastChild = last">{{ tag }}<span *ngIf="!lastChild">,&nbsp;</span></li>
+    </ul>
+  </div>
+
+  <div class="date">
+    <div class="published">
+      <p>Published: {{ article?.monthName.slice(0, 3) }} {{ article?.day }}, {{ article?.year }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="content" [innerHtml]="content"></div>
+
+<dr-mailing-list></dr-mailing-list>
 <dr-remarkbox></dr-remarkbox>
