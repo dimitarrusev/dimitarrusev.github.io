@@ -5,7 +5,9 @@ This is the source code for my personal markdown based blog. It is built using [
 
 ## License
 
-The source code is licensed under an **MIT** license. Any part of the design and content may **NOT** be reused without my permission.
+The source code is licensed under an **MIT** license. 
+
+Any part of the design and content may **NOT** be reused without my permission.
 
 ## Copyright
 
