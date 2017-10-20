@@ -65,6 +65,7 @@ export class RemarkboxComponent implements OnInit, AfterViewInit, OnDestroy {
     this.iframeResizerOptions = {
       checkOrigin: false,
       inPageLinks: true,
+      resizeFrom: 'child',
       initCallback: (iframeResizer: IFrameComponent): void => {
         if (this.remarkboxThreadFragment) {
           iframeResizer.iFrameResizer.moveToAnchor(this.remarkboxThreadFragment);
