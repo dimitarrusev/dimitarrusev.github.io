@@ -5,7 +5,7 @@ This is the source code for my personal markdown based blog. It is built using [
 
 ## License
 
-The source code is licensed under an **MIT** license. 
+The source code is licensed under an [MIT](https://github.com/dimitarrusev/dimitarrusev.github.io/blob/source/LICENSE) license.
 
 Any part of the design and content may **NOT** be reused without my permission.
 
