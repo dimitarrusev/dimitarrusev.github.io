@@ -12,3 +12,31 @@ ul {
     margin-right: 10px;
   }
 }
+
+// Temporary fix for issue #17
+::ng-deep dr-article-detail {
+  .title {
+    margin: 30px 0;
+  }
+
+  .meta {
+    margin: 30px 0;
+    border-top: 1px dashed rgba(202, 202, 202, 0.50);
+    border-bottom: 1px dashed rgba(202, 202, 202, 0.50);
+
+    .category,
+    .tags,
+    .date {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .tags {
+      p, ul, ul > li { display: inline-block; }
+    }
+  }
+
+  .content {
+    margin: 30px 0;
+  }
+}
