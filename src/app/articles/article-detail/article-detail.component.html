@@ -1,7 +1,7 @@
 <h1 class="title">{{ article?.title }}</h1>
 
 <div class="meta">
-  <p class="category">Category: {{ article?.category }}</p>
+  <p class="category">Category: {{ article.category }}</p>
 
   <div class="tags">
     <p>Tags:</p>
@@ -12,9 +12,11 @@
 
   <div class="date">
     <div class="published">
-      <p>Published: {{ article?.monthName.slice(0, 3) }} {{ article?.day }}, {{ article?.year }}</p>
+      <p>Published: {{ article.monthName.slice(0, 3) }} {{ article.day }}, {{ article.year }}</p>
     </div>
   </div>
+
+  <p class="reading-time">Reading Time: {{ article.readingTime }}</p>
 </div>
 
 <div class="content" [innerHtml]="content"></div>

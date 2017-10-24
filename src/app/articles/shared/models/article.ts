@@ -6,6 +6,7 @@ export class Article {
   day: string;
   monthName: string;
   dayName: string;
+  readingTime: string;
   category: string;
   tags: Array<string>;
   slug: string;
