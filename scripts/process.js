@@ -74,6 +74,9 @@ function processArticleEntries(articleEntries) {
     processedArticleEntry.monthName = getMonthName(processedArticleEntry.date);
     processedArticleEntry.dayName = getDayName(processedArticleEntry.date);
 
+    // add reading time prop
+    processedArticleEntry.readingTime = calculateReadingTime(processedArticleEntry.content);
+
     // add excerpt prop
     processedArticleEntry.excerpt = processedArticleEntry.content.slice(0, config.process.articles.excerptLength);
 
@@ -193,4 +196,12 @@ function getMonthName(date) {
   ];
 
   return months[new Date(date).getMonth()];
+}
+
+function calculateReadingTime(text) {
+  const wordsPerMinute = 200;
+  const numberOfWords = text.split(/\s+/g).length;
+  const readingTime = Math.round(numberOfWords / wordsPerMinute);
+
+  return (readingTime > 0) ? `${ readingTime } minute read` : `Less then 1 minute`;
 }
