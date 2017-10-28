@@ -5,7 +5,7 @@ module.exports = {
   /**
    * build configuration
    *
-   * Dupcliate properties for ease of use.
+   * Build related settings.
    *
    * outDir: root output directory
    * browserAppOutDir: output directory for browser app build results
@@ -42,6 +42,43 @@ module.exports = {
       excerptLength: 100,
       outFilenameFormat: 'slug',
       outSummaryFilename: 'articles.json'
+    }
+  },
+
+  /**
+   * generate-feed.js configuration
+   *
+   * Generates RSS feed.
+   *
+   * filename: filename for the generated feed
+   * outDir: output directory for the generated feed
+   * title: feed title
+   * description: feed description
+   * id: site id
+   * link: site url
+   * image: site image
+   * favicon: site favicon
+   * copyright: feed copyright info
+   * generator: feed generator, defaults to 'Feed for Node.js'
+   * feedLinks: object containing feed urls (example: feedLinks: { rss: 'https://domain.com/feed.xml' })
+   * author: object containing author info (example: author: { name: 'John Doe', email: 'contact@johndoe.com', link: 'https://johdoe.com/about' })
+   */
+  feed: {
+    filename: 'feed',
+    outDir: 'src',
+    title: 'Dimitar Rusev',
+    description: 'Articles on front-end engineering.',
+    id: 'https://dimitarrusev.com/',
+    link: 'https://dimitarrusev.com/',
+    image: '',
+    copyright: 'Copyright 2017 Dimitar Rusev',
+    feedLinks: {
+      rss: 'https://dimitarrusev.com/feed.xml'
+    },
+    author: {
+      name: 'Dimitar Rusev',
+      email: 'contact@dimitarrusev.com',
+      link: 'https://dimitarrusev.com/about'
     }
   },
 

@@ -12,7 +12,8 @@
         "assets",
         "content/**/*.json",
         "favicon.ico",
-        "CNAME"
+        "CNAME",
+        "feed.xml"
       ],
       "index": "index.html",
       "main": "main-browser.ts",
@@ -36,10 +37,7 @@
       "platform": "server",
       "root": "src",
       "outDir": "build/server",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": [],
       "index": "index.html",
       "main": "main-server.ts",
       "test": "test.ts",

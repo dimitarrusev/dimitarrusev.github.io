@@ -21,6 +21,7 @@ const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
 
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
+  `${browserAppOutDir}/${ config.feed.filename }.xml`,
   `${browserAppOutDir}/favicon.ico`,
   `${serverAppOutDir}/styles.*`
 ];
@@ -28,6 +29,7 @@ const staticAssets = [
 const dynamicAssets = [
   `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
+  `${browserAppOutDir}/${ config.feed.filename }.xml`,
   `${browserAppOutDir}/styles.*`,
   `${browserAppOutDir}/inline.*`,
   `${browserAppOutDir}/polyfills.*`,
@@ -36,6 +38,8 @@ const dynamicAssets = [
   `${browserAppOutDir}/*.chunk.*`,
 ];
 
-const assetsAndContent = (prerenderType === 'static') ? [...staticAssets, pages, articles] : [...dynamicAssets, pages, articles];
+const assetsAndContent = (prerenderType === 'static')
+                            ? [...staticAssets, pages, articles]
+                            : [...dynamicAssets, pages, articles];
 
 shell.cp('-R', assetsAndContent, prerenderOutDir);
