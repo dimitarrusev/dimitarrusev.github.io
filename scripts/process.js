@@ -10,20 +10,22 @@ const marked = require('marked');
 const prism = require('prismjs');
 const config = require('../build.conf');
 
-if (process.argv[2] === 'pages') {
-  const markdownEntries = getMarkdownEntries(config.process.pages.dir);
-  const processedPageEntries = processPageEntries(markdownEntries);
+switch(process.argv[2]) {
+  case 'pages':
+    const markdownEntries = getMarkdownEntries(config.process.pages.dir);
+    const processedPageEntries = processPageEntries(markdownEntries);
 
-  writeIndividualPageFiles(processedPageEntries);
-}
+    writeIndividualPageFiles(processedPageEntries);
+    break;
 
-if (process.argv[2] === 'articles') {
-  const markdownEntries = getMarkdownEntries(config.process.articles.dir);
-  const processedArticleEntries = processArticleEntries(markdownEntries);
+  case 'articles':
+    const markdownEntries = getMarkdownEntries(config.process.articles.dir);
+    const processedArticleEntries = processArticleEntries(markdownEntries);
 
-  writeIndividualArticleFiles(processedArticleEntries);
+    writeIndividualArticleFiles(processedArticleEntries);
 
-  if (config.process.articles.outSummaryFilename) writeSummaryFile(processedArticleEntries);
+    if (config.process.articles.outSummaryFilename) writeSummaryFile(processedArticleEntries);
+    break;
 }
 
 function getMarkdownEntries(dir) {
