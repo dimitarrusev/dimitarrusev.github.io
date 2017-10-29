@@ -8,7 +8,8 @@ const fs = require('fs');
 const rss = require('rss');
 const config = require('../build.conf');
 
-const feedOptions = {
+const articles = JSON.parse(fs.readFileSync(`${config.process.articles.dir}/${config.process.articles.outSummaryFilename}`, 'utf-8'));
+const feed = new rss({
   title: config.feed.title,
   description: config.feed.description,
   site_url: config.feed.siteUrl,
@@ -16,11 +17,7 @@ const feedOptions = {
   image_url: config.feed.imageUrl,
   copyright: config.feed.copyright,
   language: config.feed.language
-};
-
-const feed = new rss(feedOptions);
-
-const articles = JSON.parse(fs.readFileSync(`${config.process.articles.dir}/${config.process.articles.outSummaryFilename}`, 'utf-8'));
+});
 
 for (let article in articles) {
   if (articles.hasOwnProperty(article)) {
@@ -36,5 +33,4 @@ for (let article in articles) {
   }
 }
 
-const xml = feed.xml({ indent: true });
-fs.writeFileSync(`${ config.feed.outDir }/${ config.feed.filename }.xml`, xml);
+fs.writeFileSync(`${ config.feed.outDir }/${ config.feed.filename }.xml`, feed.xml({ indent: true }));
