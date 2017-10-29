@@ -12,15 +12,15 @@ const config = require('../build.conf');
 
 switch(process.argv[2]) {
   case 'pages':
-    const markdownEntries = getMarkdownEntries(config.process.pages.dir);
-    const processedPageEntries = processPageEntries(markdownEntries);
+    const markdownPageEntries = getMarkdownEntries(config.process.pages.dir);
+    const processedPageEntries = processPageEntries(markdownPageEntries);
 
     writeIndividualPageFiles(processedPageEntries);
     break;
 
   case 'articles':
-    const markdownEntries = getMarkdownEntries(config.process.articles.dir);
-    const processedArticleEntries = processArticleEntries(markdownEntries);
+    const markdownArticleEntries = getMarkdownEntries(config.process.articles.dir);
+    const processedArticleEntries = processArticleEntries(markdownArticleEntries);
 
     writeIndividualArticleFiles(processedArticleEntries);
 
