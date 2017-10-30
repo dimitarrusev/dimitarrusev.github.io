@@ -8,9 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
-const rss = require('rss');
 const config = require('../build.conf.js');
-const { routes, permalink } = config.prerender;
 
 switch(process.argv[2]) {
   case 'build-directory':
@@ -20,6 +18,7 @@ switch(process.argv[2]) {
     break;
 
   case 'directory-structure':
+    const { routes, permalink } = config.prerender;
     const outDir = path.resolve(__dirname, '../', config.prerender.outDir);
 
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
@@ -39,6 +38,7 @@ switch(process.argv[2]) {
     break;
 
   case 'feed':
+    const rss = require('rss');
     const articles = JSON.parse(fs.readFileSync(`${config.process.articles.dir}/${config.process.articles.outSummaryFilename}`, 'utf-8'));
     const feed = new rss({
       title: config.feed.title,
