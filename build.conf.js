@@ -102,6 +102,9 @@ module.exports = {
       'articles/second-post',
       'articles/third-post',
       'articles/fourth-post',
+      'articles/fifth-post',
+      'articles/sixth-post',
+      'articles/seventh-post',
       'contact'
     ],
     type: 'dynamic',

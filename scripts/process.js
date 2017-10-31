@@ -65,7 +65,7 @@ function processArticleEntries(articleEntries) {
     let contentPropertyName = config.process.articles.contentPropertyName;
     let processedArticleEntry = yaml.loadFront(articleEntry, contentPropertyName);
 
-    let date = processedArticleEntry.date.split('-');
+    let date = processedArticleEntry.date.split(' ').splice(0, 1).join(' ').split('-');
 
     // add year, month and day props
     processedArticleEntry.year = date[0];
@@ -75,6 +75,10 @@ function processArticleEntries(articleEntries) {
     // add monthname and dayname props
     processedArticleEntry.monthName = getMonthName(processedArticleEntry.date);
     processedArticleEntry.dayName = getDayName(processedArticleEntry.date);
+
+    // add time and timezone props
+    processedArticleEntry.time = processedArticleEntry.date.split(' ').splice(1, 1).join(' ');
+    processedArticleEntry.timezone = processedArticleEntry.date.split(' ').splice(2, 1).join(' ');
 
     // add reading time prop
     processedArticleEntry.readingTime = calculateReadingTime(processedArticleEntry.content);
@@ -86,6 +90,12 @@ function processArticleEntries(articleEntries) {
     processedArticleEntry[contentPropertyName] = convertMarkdownToHtml(processedArticleEntry[contentPropertyName]);
 
     processedArticleEntries.push(processedArticleEntry);
+  });
+
+  processedArticleEntries.sort((a, b) => {
+    let c = new Date(a.date),
+        d = new Date(b.date);
+    return c - d;
   });
 
   return processedArticleEntries;
