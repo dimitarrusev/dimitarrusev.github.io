@@ -4,7 +4,7 @@
         <description><![CDATA[Articles on front-end engineering.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 29 Oct 2017 17:08:53 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 31 Oct 2017 03:01:32 GMT</lastBuildDate>
         <copyright><![CDATA[Copyright 2017 Dimitar Rusev]]></copyright>
         <item>
             <title><![CDATA[First Post]]></title>
@@ -43,6 +43,30 @@ im]]></description>
             <guid isPermaLink="true">https://dimitarrusev.com/articles/fourth-post</guid>
             <category><![CDATA[angular]]></category>
             <pubDate>Sat, 23 Sep 2017 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Sixth Post]]></title>
+            <description><![CDATA[Sixth post!]]></description>
+            <link>https://dimitarrusev.com/articles/sixth-post</link>
+            <guid isPermaLink="true">https://dimitarrusev.com/articles/sixth-post</guid>
+            <category><![CDATA[angular]]></category>
+            <pubDate>Mon, 30 Oct 2017 13:55:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Seventh Post]]></title>
+            <description><![CDATA[Seventh post!]]></description>
+            <link>https://dimitarrusev.com/articles/seventh-post</link>
+            <guid isPermaLink="true">https://dimitarrusev.com/articles/seventh-post</guid>
+            <category><![CDATA[angular]]></category>
+            <pubDate>Mon, 30 Oct 2017 15:15:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Fifth Post]]></title>
+            <description><![CDATA[Fifth post!]]></description>
+            <link>https://dimitarrusev.com/articles/fifth-post</link>
+            <guid isPermaLink="true">https://dimitarrusev.com/articles/fifth-post</guid>
+            <category><![CDATA[angular]]></category>
+            <pubDate>Mon, 30 Oct 2017 17:34:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><script>(function(){function init(e,t){waitUntilReady((t||window).prebootData={opts:e,listening:!0,apps:[],listeners:[]})}function waitUntilReady(e,t){((t||window).document||{}).body?start(e):setTimeout(function(){waitUntilReady(e)},10)}function start(e,t){var o=t||window;if(!o.prebootStarted){o.prebootStarted=!0;var r=o.document||{},n=(e.opts||{}).eventSelectors||[];e.overlay=createOverlay(r),getAppRoots(r,e.opts).forEach(function(t){var o={root:t,events:[]};e.apps.push(o),n.forEach(function(t){return handleEvents(e,o,t)})})}}function createOverlay(e){var t=e.createElement("div");return t.setAttribute("id","prebootOverlay"),t.setAttribute("style","display:none;position:absolute;left:0;top:0;width:100%;height:100%;z-index:999999;background:black;opacity:.3"),e.body.appendChild(t),t}function getAppRoots(e,t){var o=[];return t.appRoot&&t.appRoot.length&&[].concat(t.appRoot).forEach(function(e){return o.push({serverSelector:e})}),o.forEach(function(o){o.serverNode=e.querySelector(o.serverSelector),o.clientSelector=o.clientSelector||o.serverSelector,o.clientSelector!==o.serverSelector?o.clientNode=e.querySelector(o.clientSelector):t.buffer?o.clientNode=createBuffer(o):o.clientNode=o.serverNode,o.serverNode||console.log("No server node found for selector: "+o.serverSelector)}),o}function handleEvents(e,t,o){var r=t.root.serverNode;if(r){var n=r.querySelectorAll(o.selector);if(n)for(var i=0,a=n;i<a.length;i++)!function(r){o.events.forEach(function(n){var i=createListenHandler(e,o,t,r);r.addEventListener(n,i),e.listeners.push({node:r,eventName:n,handler:i})})}(a[i])}}function createListenHandler(e,t,o,r){var n=["keyup","keydown","focusin","mouseup","mousedown"],i=["INPUT","TEXTAREA"];return function(a){var c=o.root,l=a.type;if(r&&l){var s=t.keyCodes;if(!s||!s.length||s.filter(function(e){return a.which===e}).length){t.preventDefault&&a.preventDefault(),t.action&&t.action(r,a);var d=getNodeKeyForPreboot({root:c,node:r});if(n.indexOf(l)>=0&&i.indexOf(r.tagName)>=0?e.activeNode={root:c,node:r,nodeKey:d,selection:getSelection(r)}:"change"!==l&&"focusout"!==l&&(e.activeNode=null),t.freeze){var u=e.overlay;u.style.display="block",setTimeout(function(){u.style.display="none"},1e4)}t.noReplay||o.events.push({node:r,nodeKey:d,event:a,name:l})}}}}function getSelection(e){var t=(e=e||{}).value||"",o={start:t.length,end:t.length,direction:"forward"};try{(e.selectionStart||0===e.selectionStart)&&(o.start=e.selectionStart,o.end=e.selectionEnd,o.direction=e.selectionDirection)}catch(e){}return o}function createBuffer(e){var t=e.serverNode;if(!t||!t.parentNode||"html"===e.serverSelector||"body"===e.serverSelector)return t;var o=t.cloneNode(!1);return o&&(o.style.display="none",t.parentNode.insertBefore(o,t)),o}function getNodeKeyForPreboot(e){for(var t=[],o=e.root,r=e.node,n=r;n&&n!==o.serverNode&&n!==o.clientNode;)t.push(n),n=n.parentNode;n&&t.push(n);for(var i=(r.nodeName||"unknown")+"_"+o.serverSelector,a=t.length-1;a>=0;a--)if((n=t[a]).childNodes&&a>0)for(var c=0;c<n.childNodes.length;c++)if(n.childNodes[c]===t[a-1]){i+="_s"+(c+1);break}return i}init({"buffer":true,"minify":true,"eventSelectors":[{"selector":"input,textarea","events":["keypress","keyup","keydown","input","change"]},{"selector":"select,option","events":["change"]},{"selector":"input","events":["keyup"],"preventDefault":true,"keyCodes":[13],"freeze":true},{"selector":"form","events":["submit"],"preventDefault":true,"freeze":true},{"selector":"input,textarea","events":["focusin","focusout","mousedown","mouseup"],"noReplay":true},{"selector":"button","events":["click"],"preventDefault":true,"freeze":true}],"appRoot":"dr-root"})})()</script><meta charset="utf-8"><title>Fifth Post · Dimitar Rusev</title><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><link href="https://dimitarrusev.com/styles.6e5a669f0781cd80b70d.bundle.css" rel="stylesheet"><style ng-transition="dimitarrusev.github.io">[_nghost-c0]{display:block}ul[_ngcontent-c0]{margin:30px 0;padding:0 0 30px 0;border-bottom:1px solid #cacaca}ul[_ngcontent-c0]   li[_ngcontent-c0]{display:inline-block;margin-right:10px}  dr-article-detail .title{margin:30px 0}  dr-article-detail .meta{margin:30px 0;border-top:1px dashed hsla(0,0%,79%,.5);border-bottom:1px dashed hsla(0,0%,79%,.5)}  dr-article-detail .meta .category,   dr-article-detail .meta .date,   dr-article-detail .meta .reading-time,   dr-article-detail .meta .tags{display:inline-block;margin-right:10px}  dr-article-detail .meta .tags p,   dr-article-detail .meta .tags ul,   dr-article-detail .meta .tags ul>li{display:inline-block}  dr-article-detail .content{margin:30px 0}</style><style ng-transition="dimitarrusev.github.io">p[_ngcontent-c1]{display:block;margin:30px 0}p.is-hidden[_ngcontent-c1]{display:none}</style><style ng-transition="dimitarrusev.github.io">[_nghost-c4]{display:block}</style><style ng-transition="dimitarrusev.github.io">[_nghost-c3]{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:30px 0;padding:30px 0;border-top:1px solid #cacaca;border-bottom:1px solid #cacaca}.submit-btn-container[_ngcontent-c3]{display:inline-block}</style><style ng-transition="dimitarrusev.github.io">[_nghost-c5]{display:block;margin:30px 0}</style><meta name="description" content="
+
+Fifth post!
+"><script>window['TRANSFER_STATE'] = {"data-fifth-post":{"title":"Fifth Post","date":"2017-10-30 18:34:00 +0100","category":"angular","tags":["tag 1","tag 2"],"slug":"fifth-post","content":"\u003Cp\u003EFifth post!\u003C\u002Fp\u003E\n","year":"2017","month":"10","day":"30","monthName":"October","dayName":"Monday","time":"18:34:00","timezone":"+0100","readingTime":"Less then 1 minute","excerpt":"\n\nFifth post!\n"}}</script></head><body><dr-root _nghost-c0="" ng-version="4.4.6"><ul _ngcontent-c0="">
+  <li _ngcontent-c0=""><a _ngcontent-c0="" routerLink="about" href="/about">about</a></li>
+  <li _ngcontent-c0=""><a _ngcontent-c0="" routerLink="" href="/">articles</a></li>
+  <li _ngcontent-c0=""><a _ngcontent-c0="" routerLink="contact" href="/contact">contact</a></li>
+</ul>
+
+<dr-progress-bar _ngcontent-c0="" _nghost-c1=""><p _ngcontent-c1="" class="is-hidden">Loading: 0%</p>
+</dr-progress-bar>
+
+<router-outlet _ngcontent-c0=""></router-outlet><dr-article-detail _nghost-c4=""><h1 _ngcontent-c4="" class="title">Fifth Post</h1>
+
+<div _ngcontent-c4="" class="meta">
+  <p _ngcontent-c4="" class="category">Category: angular</p>
+
+  <div _ngcontent-c4="" class="tags">
+    <p _ngcontent-c4="">Tags:</p>
+    <!----><ul _ngcontent-c4="">
+      <!----><li _ngcontent-c4="">tag 1<!----><span _ngcontent-c4="">,&nbsp;</span></li><li _ngcontent-c4="">tag 2<!----></li>
+    </ul>
+  </div>
+
+  <div _ngcontent-c4="" class="date">
+    <div _ngcontent-c4="" class="published">
+      <p _ngcontent-c4="">Published: Oct 30, 2017</p>
+    </div>
+  </div>
+
+  <p _ngcontent-c4="" class="reading-time">Reading Time: Less then 1 minute</p>
+</div>
+
+<div _ngcontent-c4="" class="content" innerHTML="<p>Fifth post!</p>&amp;#10;"><p>Fifth post!</p>
+</div>
+
+<dr-mailing-list _ngcontent-c4="" _nghost-c3=""><form _ngcontent-c3="" action="https://dimitarrusev.us16.list-manage.com/subscribe/post?u=c8660c26a0f88d9de9762ce3a&amp;id=6572b6bd29" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
+  <div _ngcontent-c3="" id="mc_embed_signup_scroll">
+    <label _ngcontent-c3="" for="mce-EMAIL">Subscribe to my mailing list:</label>
+    <input _ngcontent-c3="" class="email" id="mce-EMAIL" name="EMAIL" placeholder="Email address" required="" type="email" value="">
+    
+    <div _ngcontent-c3="" aria-hidden="true" style="position: absolute; left: -5000px;"><input _ngcontent-c3="" name="b_c8660c26a0f88d9de9762ce3a_6572b6bd29" tabindex="-1" type="text" value=""></div>
+    <div _ngcontent-c3="" class="submit-btn-container clear"><input _ngcontent-c3="" class="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe"></div>
+  </div>
+</form>
+</dr-mailing-list>
+<dr-remarkbox _ngcontent-c4="" _nghost-c5=""><noscript _ngcontent-c5=""><iframe _ngcontent-c5="" id="remarkbox-iframe" src="https://my.remarkbox.com/embed?nojs=true" style="height:600px;width:100%;border:none!important" tabindex="0"></iframe></noscript></dr-remarkbox>
+</dr-article-detail>
+</dr-root><script type="text/javascript" src="https://dimitarrusev.com/inline.0be277cbb67f729f9fcb.bundle.js"></script><script type="text/javascript" src="https://dimitarrusev.com/polyfills.3c4d56f2cc71324927f4.bundle.js"></script><script type="text/javascript" src="https://dimitarrusev.com/vendor.05d13e9619bc41122dba.bundle.js"></script><script type="text/javascript" src="https://dimitarrusev.com/main.dc9602bdd29e1bf01aca.bundle.js"></script></body></html>
