@@ -3,15 +3,18 @@ import { Title, Meta } from '@angular/platform-browser';
 
 @Injectable()
 export class SeoService {
-  readonly siteTitle = 'Dimitar Rusev';
+  readonly divider = '|';
+  readonly brandName = 'Dimitar Rusev';
 
   constructor(
     private title: Title,
     private meta: Meta
   ) {}
 
-  setTitle(title: string): SeoService {
-    this.title.setTitle(`${ title } · ${ this.siteTitle }`);
+  setTitle(title: string, invert?: boolean): SeoService {
+    (invert)
+      ? this.title.setTitle(`${ this.brandName } ${ this.divider } ${ title }`)
+      : this.title.setTitle(`${ title } ${ this.divider } ${ this.brandName }`);
 
     return this;
   }
