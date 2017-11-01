@@ -12,6 +12,7 @@ import { Article } from '../shared';
 })
 export class ArticleListComponent implements OnInit {
   title: string;
+  slug: string;
   description: string;
   articles: Array<Article>;
 
@@ -22,10 +23,19 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     this.title = this.route.snapshot.data['page']['title'];
+    this.slug = this.route.snapshot.data['slug'];
     this.description = this.route.snapshot.data['page']['description'];
     this.articles = this.route.snapshot.data['articles'];
 
-    this.seoService.setTitle(this.title)
+    // invert page title and brand name order on the home page
+    // example: `brand name | page title` instead of `page title | brand name`
+    let invertTitleOrder;
+
+    (this.slug === 'home')
+      ? invertTitleOrder = true
+      : invertTitleOrder = false;
+
+    this.seoService.setTitle(this.title, invertTitleOrder)
                    .setDescription(this.description);
   }
 }

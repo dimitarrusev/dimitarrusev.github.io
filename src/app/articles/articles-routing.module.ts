@@ -15,6 +15,17 @@ const routes = [
         path: '',
         component: ArticleListComponent,
         data: {
+          slug: 'home'
+        },
+        resolve: {
+          page: PageResolver,
+          articles: ArticlesResolver
+        }
+      },
+      {
+        path: 'articles',
+        component: ArticleListComponent,
+        data: {
           slug: 'articles'
         },
         resolve: {

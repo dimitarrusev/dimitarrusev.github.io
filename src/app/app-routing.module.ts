@@ -6,7 +6,7 @@ import { NotFoundComponent } from './core';
 const routes = [
   { path: '', loadChildren: 'app/articles/articles.module#ArticlesModule' },
   { path: 'about', loadChildren: 'app/about/about.module#AboutModule' },
-  { path: 'articles', redirectTo: '' },
+  { path: 'articles', loadChildren: 'app/articles/articles.module#ArticlesModule' },
   { path: 'contact', loadChildren: 'app/contact/contact.module#ContactModule' },
   { path: '**', component: NotFoundComponent }
 ];
