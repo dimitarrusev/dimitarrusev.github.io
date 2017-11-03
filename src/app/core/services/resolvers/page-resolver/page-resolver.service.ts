@@ -2,10 +2,7 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/concat';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/takeWhile';
+import { concat, skip, take, takeWhile } from 'rxjs/operators';
 
 import { TransferState } from '../../../../../modules/transfer-state';
 import { ProgressBarService } from '../../../../shared';
@@ -32,30 +29,30 @@ export class PageResolver implements Resolve<any> {
 
         if (isPlatformBrowser(this.platformId)) {
           this.progressBarService.showProgressBar();
-          this.pageService.pageDownloadProgress$
-                          .skip(1)
-                          .takeWhile((percentDone: number) => percentDone < 100)
-                          .concat(this.pageService.pageDownloadProgress$.take(1))
-                          .subscribe((percentDone: number) => {
-                            (percentDone < 100)
-                              ? this.progressBarService.updateProgress(percentDone)
-                              : this.progressBarService.hideProgressBar();
-                          }, (err) => console.log(err));
+          this.pageService.pageDownloadProgress$.pipe(
+            skip(1),
+            takeWhile((percentDone: number) => percentDone < 100),
+            concat(this.pageService.pageDownloadProgress$.pipe(take(1)))
+          ).subscribe((percentDone: number) => {
+            (percentDone < 100)
+              ? this.progressBarService.updateProgress(percentDone)
+              : this.progressBarService.hideProgressBar();
+          }, (err) => console.log(err));
         }
 
-        this.pageService.page$
-                        .skip(1)
-                        .take(1)
-                        .subscribe(page => {
-                          const data = {
-                            title: page.title,
-                            description: page.description,
-                            content: page.content
-                          };
+        this.pageService.page$.pipe(
+          skip(1),
+          take(1)
+        ).subscribe(page => {
+          const data = {
+            title: page.title,
+            description: page.description,
+            content: page.content
+          };
 
-                          this.cache.set(cacheSlug, data);
-                          resolve(data);
-                        }, (err) => console.log(err));
+          this.cache.set(cacheSlug, data);
+          resolve(data);
+        }, (err) => console.log(err));
       }
     });
   }

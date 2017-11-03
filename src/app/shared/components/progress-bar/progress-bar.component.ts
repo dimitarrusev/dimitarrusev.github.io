@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgressBarService } from './progress-bar.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'dr-progress-bar',

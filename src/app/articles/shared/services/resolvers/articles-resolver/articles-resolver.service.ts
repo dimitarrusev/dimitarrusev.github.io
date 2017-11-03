@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/concat';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/takeWhile';
+import { concat, skip, take, takeWhile } from 'rxjs/operators';
 
 import { TransferState } from '../../../../../../modules/transfer-state';
 import { ArticleService } from '../../article';
@@ -25,21 +22,21 @@ export class ArticlesResolver implements Resolve<any> {
         resolve(this.cache.get(cacheSlug));
       } else {
         this.articleService.getArticles();
-        this.articleService.articlesDownloadProgress$
-                           .skip(1)
-                           .takeWhile((percentDone: number) => percentDone < 100)
-                           .concat(this.articleService.articlesDownloadProgress$.take(1))
-                           .subscribe((percentDone: number) => {
-                             // console.log(`loading articles: ${percentDone}%`);
-                           }, (err) => console.log(err));
+        this.articleService.articlesDownloadProgress$.pipe(
+          skip(1),
+          takeWhile((percentDone: number) => percentDone < 100),
+          concat(this.articleService.articlesDownloadProgress$.pipe(take(1)))
+        ).subscribe((percentDone: number) => {
+         // console.log(`loading articles: ${percentDone}%`);
+        }, (err) => console.log(err));
 
-        this.articleService.articles$
-                           .skip(1)
-                           .take(1)
-                           .subscribe(articles => {
-                              this.cache.set(cacheSlug, articles);
-                              resolve(articles);
-                           }, (err) => console.log(err));
+        this.articleService.articles$.pipe(
+          skip(1),
+          take(1)
+        ).subscribe(articles => {
+          this.cache.set(cacheSlug, articles);
+          resolve(articles);
+        }, (err) => console.log(err));
       }
     });
   }

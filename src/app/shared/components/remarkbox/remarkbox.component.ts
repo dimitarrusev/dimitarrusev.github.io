@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, Renderer2, Inj
 import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { iframeResizer, IFrameComponent, IFrameOptions } from 'iframe-resizer';
+import { take } from 'rxjs/operators';
 import { RemarkboxIframeOptions } from './shared';
 
 @Component({
@@ -31,26 +32,28 @@ export class RemarkboxComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.route.url.take(1)
-                  .subscribe(urlSegments => {
-                    const urlSegmentsArr = new Array();
+    this.route.url.pipe(
+      take(1)
+    ).subscribe(urlSegments => {
+      const urlSegmentsArr = new Array();
 
-                    urlSegments.forEach((urlSegment, index) => {
-                      urlSegmentsArr.push(urlSegment.path);
+      urlSegments.forEach((urlSegment, index) => {
+        urlSegmentsArr.push(urlSegment.path);
 
-                      if ((urlSegments.length - 1) === index) {
-                        this.path = `/${ urlSegmentsArr.join('/') }`;
-                        this.remarkboxThreadUri = `${this.protocol}${this.domain}${this.path}`;
-                      }
-                    });
-                  });
+        if ((urlSegments.length - 1) === index) {
+          this.path = `/${ urlSegmentsArr.join('/') }`;
+          this.remarkboxThreadUri = `${this.protocol}${this.domain}${this.path}`;
+        }
+      });
+    });
 
-    this.route.fragment.take(1)
-                       .subscribe(fragment => {
-                         if (fragment) {
-                           this.remarkboxThreadFragment = fragment;
-                         }
-                       });
+    this.route.fragment.pipe(
+      take(1)
+    ).subscribe(fragment => {
+      if (fragment) {
+        this.remarkboxThreadFragment = fragment;
+      }
+    });
 
     this.remarkboxIframeOptions = {
       id: 'remarkbox-iframe',

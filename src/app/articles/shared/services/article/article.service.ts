@@ -3,7 +3,6 @@ import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/take';
 
 import { environment } from '../../../../../environments/environment';
 import { Article } from '../../models';
