@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { TransferState, makeStateKey, StateKey } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { concat, skip, take, takeWhile } from 'rxjs/operators';
 
-import { TransferState } from '../../../../../../modules/transfer-state';
 import { ArticleService } from '../../article';
+import { Article } from '../../../models';
 
 @Injectable()
 export class ArticlesResolver implements Resolve<any> {
   constructor(
-    private cache: TransferState,
+    private store: TransferState,
     private articleService: ArticleService,
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      const urlSlug = route.data.slug;
-      const cacheSlug = `data-${route.data.slug}`;
+      const slug = route.data.slug;
+      const key = makeStateKey<Array<Article>>(slug);
 
-      if (this.cache.get(cacheSlug)) {
-        resolve(this.cache.get(cacheSlug));
+      if (this.store.hasKey(key)) {
+        resolve(this.store.get(key, undefined));
       } else {
         this.articleService.getArticles();
         this.articleService.articlesDownloadProgress$.pipe(
@@ -34,7 +35,7 @@ export class ArticlesResolver implements Resolve<any> {
           skip(1),
           take(1)
         ).subscribe(articles => {
-          this.cache.set(cacheSlug, articles);
+          this.store.set(key, articles);
           resolve(articles);
         }, (err) => console.log(err));
       }

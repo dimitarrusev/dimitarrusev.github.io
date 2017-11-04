@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserPrebootModule } from 'preboot/browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { BrowserTransferStateModule } from '../modules/transfer-state';
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
 import { AppRoutingModule } from './app-routing.module';

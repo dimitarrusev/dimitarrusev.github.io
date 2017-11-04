@@ -1,17 +1,18 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { TransferState, makeStateKey, StateKey } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { concat, skip, take, takeWhile } from 'rxjs/operators';
 
-import { TransferState } from '../../../../../modules/transfer-state';
 import { ProgressBarService } from '../../../../shared';
+import { Page } from '../../../../shared';
 import { PageService } from '../../data';
 
 @Injectable()
 export class PageResolver implements Resolve<any> {
   constructor(
-    private cache: TransferState,
+    private store: TransferState,
     private progressBarService: ProgressBarService,
     private pageService: PageService,
     @Inject(PLATFORM_ID) private platformId: string
@@ -19,13 +20,13 @@ export class PageResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> {
     return new Promise((resolve, reject) => {
-      const urlSlug = route.data.slug;
-      const cacheSlug = `page-${route.data.slug}`;
+      const slug = route.data.slug;
+      const key = makeStateKey<Page>(`page-${ slug }`);
 
-      if (this.cache.get(cacheSlug)) {
-        resolve(this.cache.get(cacheSlug));
+      if (this.store.hasKey(key)) {
+        resolve(this.store.get(key, undefined));
       } else {
-        this.pageService.getPage(urlSlug);
+        this.pageService.getPage(slug);
 
         if (isPlatformBrowser(this.platformId)) {
           this.progressBarService.showProgressBar();
@@ -50,7 +51,7 @@ export class PageResolver implements Resolve<any> {
             content: page.content
           };
 
-          this.cache.set(cacheSlug, data);
+          this.store.set(key, data);
           resolve(data);
         }, (err) => console.log(err));
       }
