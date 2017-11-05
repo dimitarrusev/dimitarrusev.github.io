@@ -6,11 +6,11 @@ import { take } from 'rxjs/operators';
 import { RemarkboxIframeOptions } from './shared';
 
 @Component({
-  selector: 'dr-remarkbox',
-  templateUrl: './remarkbox.component.html',
-  styleUrls: ['./remarkbox.component.scss']
+  selector: 'dr-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.scss']
 })
-export class RemarkboxComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
   protocol: string = 'https://';
   domain: string = 'dimitarrusev.com';
   path: string;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProgressBarComponent, ProgressBarService, NewsletterComponent, RemarkboxComponent } from './components';
+import { ProgressBarComponent, ProgressBarService, NewsletterComponent, CommentsComponent } from './components';
 
 @NgModule({
   imports: [
@@ -9,12 +9,12 @@ import { ProgressBarComponent, ProgressBarService, NewsletterComponent, Remarkbo
   ],
   exports: [
     ProgressBarComponent,
-    RemarkboxComponent,
+    CommentsComponent,
     NewsletterComponent
   ],
   declarations: [
     ProgressBarComponent,
-    RemarkboxComponent,
+    CommentsComponent,
     NewsletterComponent
   ],
   providers: [
