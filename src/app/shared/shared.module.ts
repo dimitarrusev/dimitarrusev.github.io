@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ProgressBarComponent, ProgressBarService, NewsletterComponent, CommentsComponent } from './components';
+import { ProgressBarModule } from './modules';
+import { NewsletterComponent, CommentsComponent } from './components';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ProgressBarModule
   ],
   exports: [
-    ProgressBarComponent,
+    ProgressBarModule,
     CommentsComponent,
     NewsletterComponent
   ],
   declarations: [
-    ProgressBarComponent,
     CommentsComponent,
     NewsletterComponent
-  ],
-  providers: [
-    ProgressBarService
   ]
 })
 export class SharedModule {}

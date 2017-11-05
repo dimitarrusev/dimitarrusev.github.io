@@ -5,7 +5,6 @@ import { TransferState, makeStateKey, StateKey } from '@angular/platform-browser
 import { Observable } from 'rxjs/Observable';
 import { concat, skip, take, takeWhile } from 'rxjs/operators';
 
-// import { TransferState } from '../../../../../../modules/transfer-state';
 import { ProgressBarService } from '../../../../../shared';
 import { ArticleService } from '../../article';
 import { Article } from '../../../models';
