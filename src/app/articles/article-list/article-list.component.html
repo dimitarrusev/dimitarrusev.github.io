@@ -1,6 +1,6 @@
 <ul>
   <li *ngFor="let article of articles">
-    <p class="title"><a [routerLink]="['articles', article.slug]">{{ article.title }}</a></p>
+    <p class="title"><a [routerLink]="(slug === 'home') ? ['articles', article.slug] : [article.slug]">{{ article.title }}</a></p>
 
     <div class="category">
       <p>category: {{ article.category }}</p>

@@ -11,6 +11,7 @@ import { Article } from '../shared';
 })
 export class ArticleListComponent implements OnInit {
   title: string;
+  invertTitleOrder: boolean;
   slug: string;
   description: string;
   articles: Array<Article>;
@@ -26,15 +27,13 @@ export class ArticleListComponent implements OnInit {
     this.description = this.route.snapshot.data['page']['description'];
     this.articles = this.route.snapshot.data['articles'];
 
-    // invert page title and brand name order on the home page
+    // invert page title and brand name order only on the home page
     // example: `brand name | page title` instead of `page title | brand name`
-    let invertTitleOrder;
-
     (this.slug === 'home')
-      ? invertTitleOrder = true
-      : invertTitleOrder = false;
+      ? this.invertTitleOrder = true
+      : this.invertTitleOrder = false;
 
-    this.seoService.setTitle(this.title, invertTitleOrder)
+    this.seoService.setTitle(this.title, this.invertTitleOrder)
                    .setDescription(this.description);
   }
 }
