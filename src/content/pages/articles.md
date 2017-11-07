@@ -1,4 +1,4 @@
 ---
 title: "Articles"
-description: "Articles on front-end engineering."
+description: "Personal insight on designing and developing for the web."
 ---
