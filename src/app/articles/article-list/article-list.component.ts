@@ -11,29 +11,21 @@ import { Article } from '../shared';
 })
 export class ArticleListComponent implements OnInit {
   title: string;
-  invertTitleOrder: boolean;
   slug: string;
   description: string;
   articles: Array<Article>;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private seoService: SeoService
   ) {}
 
   ngOnInit() {
-    this.title = this.route.snapshot.data['page']['title'];
-    this.slug = this.route.snapshot.data['slug'];
-    this.description = this.route.snapshot.data['page']['description'];
-    this.articles = this.route.snapshot.data['articles'];
-
-    // invert page title and brand name order only on the home page
-    // example: `brand name | page title` instead of `page title | brand name`
-    (this.slug === 'home')
-      ? this.invertTitleOrder = true
-      : this.invertTitleOrder = false;
-
-    this.seoService.setTitle(this.title, this.invertTitleOrder)
-                   .setDescription(this.description);
+    this.title = this.activatedRoute.snapshot.data['page']['title'];
+    this.slug = this.activatedRoute.snapshot.data['slug'];
+    this.description = this.activatedRoute.snapshot.data['page']['description'];
+    this.articles = this.activatedRoute.snapshot.data['articles'];
+    this.seoService.setTitle(this.title);
+    this.seoService.setDescription(this.description);
   }
 }

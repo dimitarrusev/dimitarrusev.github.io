@@ -17,17 +17,16 @@ export class ArticleDetailComponent implements OnInit {
   content: SafeHtml;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private seoService: SeoService
   ) {}
 
   ngOnInit() {
-    this.title = this.route.snapshot.data['article']['title'];
-    this.description = this.route.snapshot.data['article']['excerpt'];
-    this.article = this.route.snapshot.data['article'];
-    this.content = this.route.snapshot.data['article']['content'];
-
-    this.seoService.setTitle(this.title)
-                   .setDescription(this.description);
+    this.title = this.activatedRoute.snapshot.data['article']['title'];
+    this.description = this.activatedRoute.snapshot.data['article']['excerpt'];
+    this.article = this.activatedRoute.snapshot.data['article'];
+    this.content = this.activatedRoute.snapshot.data['article']['content'];
+    this.seoService.setTitle(this.title);
+    this.seoService.setDescription(this.description);
   }
 }
