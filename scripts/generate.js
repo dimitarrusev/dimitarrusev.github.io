@@ -1,8 +1,8 @@
 /**
  * generate.js
  *
- * Generates build directory, directory structure (in accordance with permalink settins) or
- * feed depending on user input.
+ * Generates build directory, directory structure (in accordance with permalink settins),
+ * feed or sitemap depending on user input.
  */
 
 const fs = require('fs');
@@ -65,5 +65,26 @@ switch(process.argv[2]) {
     }
 
     fs.writeFileSync(`${ config.feed.outDir }/${ config.feed.filename }.xml`, feed.xml({ indent: true }));
+    break;
+
+  case 'sitemap':
+    const sm = require('sitemap');
+    let sitemap = sm.createSitemap({
+      hostname: `https://dimitarrusev.com`,
+      cachetime: 600000, // 600 seconds (10 min) cache purge period
+      urls: []
+    });
+
+    config.prerender.routes.forEach((route) => {
+      sitemap.urls.push({
+        url: route,
+        changefreq: 'weekly',
+        priority: 0.8,
+        lastmodrealtime: true,
+        lastmodfile: `${ config.prerender.outDir }/${ route }/index.html`
+      });
+    });
+
+    fs.writeFileSync(`${ config.sitemap.outDir }/${ config.sitemap.filename }.xml`, sitemap.toString());
     break;
 }

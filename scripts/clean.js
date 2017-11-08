@@ -25,6 +25,13 @@ switch (process.argv[2]) {
       shell.rm('-rf', `${ feedDir }/${ feedFilename }`);
       break;
 
+    case 'sitemap':
+      const sitemapDir = path.resolve(__dirname, '../', config.sitemap.outDir);
+      const sitemapFilename = `${ config.sitemap.filename }.xml`;
+
+      shell.rm('-rf', `${ sitemapDir }/${ sitemapFilename }`);
+      break;
+
     default:
       const buildDir = path.resolve(__dirname, '../', config.build.outDir);
       const prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir);

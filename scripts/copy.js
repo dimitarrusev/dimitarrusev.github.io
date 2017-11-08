@@ -22,6 +22,7 @@ const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/${ config.feed.filename }.xml`,
+  `${browserAppOutDir}/${ config.sitemap.filename }.xml`,
   `${browserAppOutDir}/favicon.ico`,
   `${serverAppOutDir}/styles.*`
 ];
@@ -30,6 +31,7 @@ const dynamicAssets = [
   `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
   `${browserAppOutDir}/${ config.feed.filename }.xml`,
+  `${browserAppOutDir}/${ config.sitemap.filename }.xml`,
   `${browserAppOutDir}/styles.*`,
   `${browserAppOutDir}/inline.*`,
   `${browserAppOutDir}/polyfills.*`,

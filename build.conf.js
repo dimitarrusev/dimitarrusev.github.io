@@ -46,7 +46,7 @@ module.exports = {
   },
 
   /**
-   * generate-feed.js configuration
+   * generate.js feed configuration
    *
    * Generates RSS feed.
    *
@@ -80,6 +80,14 @@ module.exports = {
       email: 'contact@dimitarrusev.com',
       link: 'https://dimitarrusev.com/about'
     }
+  },
+
+  /**
+   * generate.js sitemap configuration
+   */
+  sitemap: {
+    filename: 'sitemap',
+    outDir: 'src',
   },
 
   /**
