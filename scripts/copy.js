@@ -14,15 +14,17 @@ const browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppO
       prerenderType = config.prerender.type,
       prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir),
       processPagesOutDir = `${config.process.pages.dir.split('/').filter(piece => piece !== 'src')[0]}`,
-      processArticlesOutDir = `${config.process.articles.dir.split('/').filter(piece => piece !== 'src')[0]}`;
+      processArticlesOutDir = `${config.process.articles.dir.split('/').filter(piece => piece !== 'src')[0]}`,
+      feedOutDir = path.resolve(__dirname, '../', config.feed.outDir),
+      sitemapOutDir = path.resolve(__dirname, '../', config.sitemap.outDir);
 
 const pages = `${browserAppOutDir}/${processPagesOutDir}`;
 const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
 
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
-  `${browserAppOutDir}/${ config.feed.filename }.xml`,
-  `${browserAppOutDir}/${ config.sitemap.filename }.xml`,
+  `${feedOutDir}/${ config.feed.filename }.xml`,
+  `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
   `${browserAppOutDir}/favicon.ico`,
   `${serverAppOutDir}/styles.*`
 ];
@@ -30,8 +32,8 @@ const staticAssets = [
 const dynamicAssets = [
   `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
-  `${browserAppOutDir}/${ config.feed.filename }.xml`,
-  `${browserAppOutDir}/${ config.sitemap.filename }.xml`,
+  `${feedOutDir}/${ config.feed.filename }.xml`,
+  `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
   `${browserAppOutDir}/styles.*`,
   `${browserAppOutDir}/inline.*`,
   `${browserAppOutDir}/polyfills.*`,

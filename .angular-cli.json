@@ -12,8 +12,7 @@
         "assets",
         "content/**/*.json",
         "favicon.ico",
-        "CNAME",
-        "*.xml"
+        "CNAME"
       ],
       "index": "index.html",
       "main": "main-browser.ts",
