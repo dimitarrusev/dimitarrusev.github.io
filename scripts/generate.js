@@ -87,4 +87,21 @@ switch(process.argv[2]) {
 
     fs.writeFileSync(`${ config.sitemap.outDir }/${ config.sitemap.filename }.xml`, sitemap.toString());
     break;
+
+  case 'robots':
+    const robots = require('generate-robotstxt').default;
+
+    robots({
+      policy: [
+        {
+          userAgent: '*',
+          allow: '/'
+        }
+      ],
+      sitemap: `https://dimitarrusev.com/${ config.sitemap.filename }.xml`,
+      host: `https://dimitarrusev.com`
+    }).then((robotstxt) => {
+      fs.writeFileSync(`${ config.robots.outDir }/${ config.robots.filename }.txt`, robotstxt.toString());
+    });
+    break;
 }

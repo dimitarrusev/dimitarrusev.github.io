@@ -91,6 +91,14 @@ module.exports = {
   },
 
   /**
+   * generate.js robots configuration
+   */
+  robots: {
+    filename: 'robots',
+    outDir: 'src',
+  },
+
+  /**
    * prerender.js configuration
    *
    * Prerenders and spits out static or dynamic page for each route.

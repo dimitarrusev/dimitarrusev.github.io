@@ -17,6 +17,7 @@ const browserAppOutDir = path.resolve(__dirname, '../', config.build.browserAppO
       processArticlesOutDir = `${config.process.articles.dir.split('/').filter(piece => piece !== 'src')[0]}`,
       feedOutDir = path.resolve(__dirname, '../', config.feed.outDir),
       sitemapOutDir = path.resolve(__dirname, '../', config.sitemap.outDir);
+      robotsOutDir = path.resolve(__dirname, '../', config.robots.outDir);
 
 const pages = `${browserAppOutDir}/${processPagesOutDir}`;
 const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
@@ -24,7 +25,7 @@ const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
   `${feedOutDir}/${ config.feed.filename }.xml`,
-  `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
+  `${robotsOutDir}/${ config.robots.filename }.txt`,
   `${browserAppOutDir}/favicon.ico`,
   `${serverAppOutDir}/styles.*`
 ];
@@ -34,6 +35,7 @@ const dynamicAssets = [
   `${browserAppOutDir}/favicon.ico`,
   `${feedOutDir}/${ config.feed.filename }.xml`,
   `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
+  `${robotsOutDir}/${ config.robots.filename }.txt`,
   `${browserAppOutDir}/styles.*`,
   `${browserAppOutDir}/inline.*`,
   `${browserAppOutDir}/polyfills.*`,

@@ -32,6 +32,13 @@ switch (process.argv[2]) {
       shell.rm('-rf', `${ sitemapDir }/${ sitemapFilename }`);
       break;
 
+    case 'robots':
+      const robotsDir = path.resolve(__dirname, '../', config.robots.outDir);
+      const robotsFilename = `${ config.robots.filename }.txt`;
+
+      shell.rm('-rf', `${ robotsDir }/${ robotsFilename }`);
+      break;
+
     default:
       const buildDir = path.resolve(__dirname, '../', config.build.outDir);
       const prerenderOutDir = path.resolve(__dirname, '../', config.prerender.outDir);
