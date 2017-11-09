@@ -14,7 +14,8 @@
         "favicon.ico",
         "CNAME",
         "googlee835af3251fae8cf.html",
-        "BingSiteAuth.xml"
+        "BingSiteAuth.xml",
+        "yandex_c16d42ae3fb0f2ac.html"
       ],
       "index": "index.html",
       "main": "main-browser.ts",
