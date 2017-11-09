@@ -12,7 +12,8 @@
         "assets",
         "content/**/*.json",
         "favicon.ico",
-        "CNAME"
+        "CNAME",
+        "googlee835af3251fae8cf.html"
       ],
       "index": "index.html",
       "main": "main-browser.ts",

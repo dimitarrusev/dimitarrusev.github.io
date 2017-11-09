@@ -24,15 +24,18 @@ const articles = `${browserAppOutDir}/${processArticlesOutDir}`;
 
 const staticAssets = [
   `${browserAppOutDir}/CNAME`,
-  `${feedOutDir}/${ config.feed.filename }.xml`,
-  `${robotsOutDir}/${ config.robots.filename }.txt`,
   `${browserAppOutDir}/favicon.ico`,
+  `${browserAppOutDir}/googlee835af3251fae8cf.html`,
+  `${feedOutDir}/${ config.feed.filename }.xml`,
+  `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
+  `${robotsOutDir}/${ config.robots.filename }.txt`,
   `${serverAppOutDir}/styles.*`
 ];
 
 const dynamicAssets = [
   `${browserAppOutDir}/CNAME`,
   `${browserAppOutDir}/favicon.ico`,
+  `${browserAppOutDir}/googlee835af3251fae8cf.html`,
   `${feedOutDir}/${ config.feed.filename }.xml`,
   `${sitemapOutDir}/${ config.sitemap.filename }.xml`,
   `${robotsOutDir}/${ config.robots.filename }.txt`,
