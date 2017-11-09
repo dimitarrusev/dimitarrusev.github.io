@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://dimitarrusev.com/sitemap.xml
+Host: https://dimitarrusev.com
