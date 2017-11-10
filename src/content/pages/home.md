@@ -1,4 +1,4 @@
 ---
 title: "Dimitar Rusev"
-description: "Designer, Developer."
+description: "Designer, Engineer."
 ---
