@@ -14,7 +14,7 @@ export class CommentsComponent implements OnInit, AfterViewInit, OnDestroy {
   protocol: string = 'https://';
   domain: string = 'dimitarrusev.com';
   path: string;
-  remarkboxOwnerKey: string = 'none';
+  remarkboxOwnerKey: string = 'b4905c16-d6a1-11e7-92ef-040140774501';
   remarkboxThreadUri: string;
   remarkboxThreadFragment: string;
   remarkboxIframeSrc: string = 'https://my.remarkbox.com';
