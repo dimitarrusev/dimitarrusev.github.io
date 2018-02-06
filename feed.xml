@@ -4,69 +4,15 @@
         <description><![CDATA[Articles on front-end engineering.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 03 Feb 2018 22:01:22 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 06 Feb 2018 14:49:52 GMT</lastBuildDate>
         <copyright><![CDATA[Copyright 2017 Dimitar Rusev]]></copyright>
         <item>
-            <title><![CDATA[First Post]]></title>
-            <description><![CDATA[First post!
-
-Syntax highlight example:
-
-```typescript
-import { NgModule } from '@angular/core';
-im]]></description>
-            <link>https://dimitarrusev.com/articles/first-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/first-post</guid>
+            <title><![CDATA[Building Angular Universal Applications with the Angular CLI]]></title>
+            <description><![CDATA[As of Angular 4.0, Angular Universal, which initially started as a community-driven project, is pa]]></description>
+            <link>https://dimitarrusev.com/articles/building-angular-universal-apps-with-the-angular-cli</link>
+            <guid isPermaLink="true">https://dimitarrusev.com/articles/building-angular-universal-apps-with-the-angular-cli</guid>
             <category><![CDATA[angular]]></category>
-            <pubDate>Fri, 11 Aug 2017 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Second Post]]></title>
-            <description><![CDATA[Second post!]]></description>
-            <link>https://dimitarrusev.com/articles/second-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/second-post</guid>
-            <category><![CDATA[rxjs]]></category>
-            <pubDate>Sat, 12 Aug 2017 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Third Post]]></title>
-            <description><![CDATA[Third post!]]></description>
-            <link>https://dimitarrusev.com/articles/third-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/third-post</guid>
-            <category><![CDATA[angular]]></category>
-            <pubDate>Sat, 02 Sep 2017 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Fourth Post]]></title>
-            <description><![CDATA[Angular's router acts as the main hub of any application, it loads the relevant components relevan]]></description>
-            <link>https://dimitarrusev.com/articles/fourth-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/fourth-post</guid>
-            <category><![CDATA[angular]]></category>
-            <pubDate>Sat, 23 Sep 2017 00:00:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Sixth Post]]></title>
-            <description><![CDATA[Sixth post!]]></description>
-            <link>https://dimitarrusev.com/articles/sixth-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/sixth-post</guid>
-            <category><![CDATA[angular]]></category>
-            <pubDate>Mon, 30 Oct 2017 13:55:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Seventh Post]]></title>
-            <description><![CDATA[Seventh post!]]></description>
-            <link>https://dimitarrusev.com/articles/seventh-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/seventh-post</guid>
-            <category><![CDATA[angular]]></category>
-            <pubDate>Mon, 30 Oct 2017 15:15:00 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[Fifth Post]]></title>
-            <description><![CDATA[Fifth post!]]></description>
-            <link>https://dimitarrusev.com/articles/fifth-post</link>
-            <guid isPermaLink="true">https://dimitarrusev.com/articles/fifth-post</guid>
-            <category><![CDATA[angular]]></category>
-            <pubDate>Mon, 30 Oct 2017 17:34:00 GMT</pubDate>
+            <pubDate>Tue, 06 Feb 2018 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
