@@ -7,8 +7,7 @@
     "types": []
   },
   "include": [
-    "**/*.ts",
-    "../node_modules/preboot/*.ts"
+    "**/*.ts"
   ],
   "exclude": [
     "test.ts",

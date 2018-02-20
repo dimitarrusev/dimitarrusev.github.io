@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
-import { BrowserPrebootModule } from 'preboot/browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CoreModule } from './core';
@@ -13,7 +12,6 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'dimitarrusev.github.io' }),
     BrowserTransferStateModule,
-    BrowserPrebootModule.replayEvents(),
     HttpClientModule,
     CoreModule,
     SharedModule,
