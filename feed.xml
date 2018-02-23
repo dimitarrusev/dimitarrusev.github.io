@@ -4,7 +4,7 @@
         <description><![CDATA[Articles on front-end engineering.]]></description>
         <link>http://github.com/dylang/node-rss</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 20 Feb 2018 12:45:15 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Feb 2018 23:11:06 GMT</lastBuildDate>
         <copyright><![CDATA[Copyright 2017 Dimitar Rusev]]></copyright>
         <item>
             <title><![CDATA[Building Angular Universal Applications with the Angular CLI]]></title>
