@@ -80,7 +80,7 @@
     "reflect-metadata": "^0.1.10",
     "rss": "^1.2.2",
     "shelljs": "^0.8.1",
-    "sitemap": "^1.13.0",
+    "sitemap": "^3.2.1",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "2.7.2",
