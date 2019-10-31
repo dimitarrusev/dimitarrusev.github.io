@@ -49,7 +49,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^1.0.0-beta.3",
     "@types/iframe-resizer": "^3.5.2",
     "core-js": "^2.4.1",
-    "iframe-resizer": "^3.5.14",
+    "iframe-resizer": "^4.2.3",
     "rxjs": "5.5.6",
     "serialize-javascript": "^1.4.0",
     "zone.js": "^0.8.14"
